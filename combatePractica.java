@@ -7,7 +7,7 @@ public class combatePractica {
 		Scanner sc = new Scanner(System.in);
 		boolean pokemonDerrotado = false;
 		int opcion;
-		int cont = 71;
+		int cont = 1;
 
 		Pokemon pokemon1 = new Pokemon("Pikachu", /* Vel */ 10, /* AtqF */ 60, /* DefF */ 20, /* AtqE */ 30,
 				/* DefE */ 10, /* HP */ 160);
@@ -94,6 +94,7 @@ public class combatePractica {
 		}
 	}
 }
+
 
 
 
