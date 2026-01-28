@@ -218,11 +218,23 @@ public class Pokemon {
 	}
 
 	public void agregarAtaque(Ataque ataque) {
-		if (movimientos.size() < 4) {
+		boolean agregado = false;
+		if (movimientos.size() < 4 && ataque.getTipo() != null) {
 			movimientos.add(ataque);
-		} else {
-			System.out.println(ataque.getNombre() + " no se añadira, " + this.validarNombre() + " no puede tener mas de 4 ataques");
+			agregado = true;
+		} 
+		
+		if(!agregado && ataque.getTipo()!= null) {
+			System.out.println(ataque.getNombre() + " no se añadira, " + this.validarNombre()
+					+ " no puede tener mas de 4 ataques");
 		}
+	}
+
+	public boolean AtacaConPrioridad(int opcion) {
+		if (movimientos.get(opcion - 1).tienePrioridad()) {
+			return true;
+		}
+		return false;
 	}
 	// } No toqueis ningun metodo de estos deberian funcionar sino avisar
 

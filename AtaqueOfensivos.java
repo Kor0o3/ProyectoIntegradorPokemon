@@ -1,9 +1,10 @@
 package Programa;
 
 public abstract class AtaqueOfensivos extends Ataque {
-	// Si tocais algo de esta clase comentarlo al igual que con las otras por si luego falla
-	public AtaqueOfensivos(String nombre, int potencia, int precision, int pp) {
-		super(nombre, potencia, precision, pp);
+	// Si tocais algo de esta clase comentarlo al igual que con las otras por si
+	// luego falla
+	public AtaqueOfensivos(String nombre, String tipo, int potencia, int precision, int pp, boolean prioridad) {
+		super(nombre, tipo, potencia, precision, pp, prioridad);
 		// TODO Auto-generated constructor stub
 	}
 
