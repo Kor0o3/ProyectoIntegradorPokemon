@@ -1,6 +1,6 @@
 package Programa;
 
-public class AtaqueEspecial extends AtaqueOfensivo{
+public class AtaqueEspecial extends AtaqueOfensivos{
 	// Si tocais algo de esta clase comentarlo al igual que con las otras por si luego falla
 	public AtaqueEspecial(String nombre, int potencia, int precision, int pp) {
 		super(nombre, potencia, precision, pp);
