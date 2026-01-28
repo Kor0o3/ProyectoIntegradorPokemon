@@ -220,10 +220,12 @@ public class Pokemon {
 	public void agregarAtaque(Ataque ataque) {
 		if (movimientos.size() < 4) {
 			movimientos.add(ataque);
+		} else {
+			System.out.println(ataque.getNombre() + " no se añadira, " + this.validarNombre() + " no puede tener mas de 4 ataques");
 		}
 	}
 	// } No toqueis ningun metodo de estos deberian funcionar sino avisar
-	
+
 	public boolean esValidoParaCombate() { // Hecho por Raúl: valida un pokemon antes de un combate
 		int poderTotal = this.velocidad + this.ataqueFisico + this.defensaFisico + this.ataqueEspecial
 				+ this.defensaEspecial + this.puntosVidaMaximo;
