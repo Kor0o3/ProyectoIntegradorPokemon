@@ -7,15 +7,18 @@ public class combatePractica {
 		Scanner sc = new Scanner(System.in);
 		boolean pokemonDerrotado = false;
 		int masVeloz = 0, opcionP1 = 0, opcionP2 = 0, cont = 1;
-
-		Pokemon pokemon1 = new Pokemon("Pikachu", 86, 55, 40, 50, 50, 100);
-		pokemon1.movimientos.add("Placaje");
-		pokemon1.movimientos.add("Rayo");
-
+		
+		Pokemon pokemon1 = new Pokemon("Pikachu", 60, 55, 10, 50, 10, 100);
+		pokemon1.agregarAtaque(new AtaqueNormal("Placaje", 80, 100, 30));
+		pokemon1.agregarAtaque(new AtaqueNormal("Portazo", 80, 75, 20));
+		pokemon1.agregarAtaque(new AtaqueEspecial("Rayo", 90, 100, 15));
+		pokemon1.agregarAtaque(new AtaqueEspecial("Trueno", 100, 45, 15));
+		pokemon1.agregarAtaque(new AtaqueEspecial("Impactrueno", 40, 100, 15));
+		
 		Pokemon pokemon2 = new Pokemon("Charmander", "Clipper", 85, 84, 20, 109, 85, 120);
-		pokemon2.movimientos.add("Arañazo");
-		pokemon2.movimientos.add("Ascuas");
-
+		pokemon2.agregarAtaque(new AtaqueNormal("Placaje", 80, 100, 30));
+		pokemon2.agregarAtaque(new AtaqueEspecial("Ascuas", 40, 951, 25));
+		
 		if (pokemon1.esValidoParaCombate() && pokemon2.esValidoParaCombate()) {
 			mostrarPokemons(pokemon1, pokemon2);
 			do {
