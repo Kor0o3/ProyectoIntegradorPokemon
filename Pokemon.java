@@ -14,7 +14,8 @@ public class Pokemon {
 	protected int velocidad;
 	protected int puntosVidaActuales;
 	protected int puntosVidaMaximo;
-	public List<String> movimientos;
+	protected int poderMaximo = 600;
+	public List<Ataque> movimientos;
 
 	// Constructores
 	public Pokemon(String nombrePokemon) {
@@ -53,8 +54,7 @@ public class Pokemon {
 					validarNombre() + " no puede participar en batallas hasta que sus atributos no sean cambiados");
 		}
 
-		if (totalPoder > 600) {
-			System.out.println("El poder de " + validarNombre() + " no puede superar 600");
+		if (totalPoder > this.poderMaximo) {
 			this.ataqueFisico = 0;
 			this.defensaFisico = 0;
 			this.puntosVidaMaximo = 0;
@@ -64,16 +64,8 @@ public class Pokemon {
 	}
 
 	// Getter y Setter
-	public String getNombrePokemon() {
-		return nombrePokemon;
-	}
-
 	public void setNombrePokemon(String nombrePokemon) {
 		this.nombrePokemon = nombrePokemon;
-	}
-
-	public String getMote() {
-		return mote;
 	}
 
 	public void setMote(String mote) {
@@ -168,6 +160,14 @@ public class Pokemon {
 	}
 
 	// Métodos
+	public String validarNombre() {
+		if (this.mote != null) {
+			return this.mote;
+		} else {
+			return this.nombrePokemon;
+		}
+	}
+
 	public void reducirPuntosDeVida(int v) {
 		this.puntosVidaActuales = this.puntosVidaActuales - v;
 		if (this.puntosVidaActuales <= 0) {
@@ -175,42 +175,39 @@ public class Pokemon {
 		}
 	}
 
-	public void atacar(Pokemon enemigo, int opcion) {
-		opcion = opcion - 1;
+	public void mostrarEstadoDelPokemon() { // Hecho por fran
+		String RED = "\u001B[31m", GREEN = "\u001B[32m", YELLOW = "\u001B[33m", ANSI_RESET = "\u001B[0m", color = null;
+		int porcentaje = (this.puntosVidaActuales * 100) / this.puntosVidaMaximo;
+		int cantidad = (this.puntosVidaActuales * 20) / this.puntosVidaMaximo;
 
-		if (opcion == 0) {
-			int danioFisico = this.ataqueFisico - enemigo.defensaFisico;
-			System.out.println(validarNombre() + " usa " + movimientos.get(opcion));
-			if (danioFisico <= 0) {
-				danioFisico = 1;
-			}
-			enemigo.reducirPuntosDeVida(danioFisico);
-
+		if (porcentaje == 100) {
+			color = GREEN;
+		} else if (porcentaje < 25) {
+			color = RED;
+		} else if (porcentaje < 50) {
+			color = YELLOW;
 		} else {
-			int danioEspecial = this.ataqueEspecial - enemigo.defensaEspecial;
-			System.out.println(validarNombre() + " usa " + movimientos.get(opcion));
-			if (danioEspecial <= 0) {
-				danioEspecial = 1;
-			}
-			enemigo.reducirPuntosDeVida(danioEspecial);
+			color = GREEN;
 		}
 
-	}
-
-	public void mostrarEstadoDelPokemon() { // Hecho por fran
+		System.out.println("——————————————————————————————————");
 		System.out.println(validarNombre());
 		System.out.print(this.puntosVidaActuales + "/" + this.puntosVidaMaximo + " ");
-
-		int cantidad = (this.puntosVidaActuales * 20) / this.puntosVidaMaximo;
 		System.out.print(" |");
 		for (int i = 0; i < cantidad; i++) {
-			System.out.print('-');
+			System.out.print(color + "■" + ANSI_RESET);
 		}
 		for (int g = 0; g < 20 - cantidad; g++) {
-			System.out.print(" ");
+			System.out.print("⬚");
 		}
-		System.out.println('|');
-		System.out.println();
+		System.out.println("|");
+		System.out.println("——————————————————————————————————");
+	}
+
+	// todo esto es lo nuevo de ataques {
+	public void atacar(Pokemon enemigo, int opcion) {
+		Ataque ataque = movimientos.get(opcion - 1);
+		ataque.utilizar(this, enemigo);
 	}
 
 	public void mostrarAtaques() {
@@ -220,25 +217,23 @@ public class Pokemon {
 		}
 	}
 
+	public void agregarAtaque(Ataque ataque) {
+		if (movimientos.size() < 4) {
+			movimientos.add(ataque);
+		}
+	}
+	// } No toqueis ningun metodo de estos deberian funcionar sino avisar
+	
 	public boolean esValidoParaCombate() { // Hecho por Raúl: valida un pokemon antes de un combate
 		int poderTotal = this.velocidad + this.ataqueFisico + this.defensaFisico + this.ataqueEspecial
 				+ this.defensaEspecial + this.puntosVidaMaximo;
 
 		if (velocidad > 0 && ataqueFisico > 0 && defensaFisico > 0 && ataqueEspecial > 0 && defensaEspecial > 0
-				&& puntosVidaMaximo > 0 && poderTotal <= 600) {
+				&& puntosVidaMaximo > 0 && poderTotal <= this.poderMaximo) {
 			return true;
-		} else if (ataqueFisico > 0 && defensaFisico > 0 && puntosVidaMaximo > 0) {
-			System.out.println("El poder de " + validarNombre() + " no puede superar 600");
+		} else {
+			System.out.println("El poder de " + validarNombre() + " no puede superar " + this.poderMaximo);
 		}
 		return false;
-	}
-
-	public String validarNombre() { // Hecho por Raúl: resumen el codigo para no tener que repetir tanta veces el
-									// mismo if de comprobar nombre o mote
-		if (this.mote != null) {
-			return this.mote;
-		} else {
-			return this.nombrePokemon;
-		}
 	}
 }
