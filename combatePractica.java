@@ -27,7 +27,6 @@ public class combatePractica {
 					if (!pokemonDerrotado && pokemon1.getPuntosVidaActuales() > 0
 							&& pokemon2.getPuntosVidaActuales() > 0) {
 						System.out.println("Ronda " + cont);
-
 						System.out.println("——————————————————————————————————");
 						System.out.println("Turno de " + pokemon1.validarNombre());
 						System.out.println("——————————————————————————————————");
