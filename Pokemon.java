@@ -231,10 +231,11 @@ public class Pokemon {
 	}
 
 	public boolean AtacaConPrioridad(int opcion) {
-		if (movimientos.get(opcion - 1).tienePrioridad()) {
-			return true;
-		}
-		return false;
+		return movimientos.get(opcion - 1).getPrioridad();
+	}
+	
+	public boolean puedesUsarAtaque(int opcion) {
+		return movimientos.get(opcion - 1).tienePps();
 	}
 	// } No toqueis ningun metodo de estos deberian funcionar sino avisar
 

@@ -11,8 +11,9 @@ public abstract class Ataque {
 	protected String nombre;
 	protected String tipo;
 	protected boolean prioridad;
+	protected int rng = (int) (Math.random() * 100);
 	protected static double probCrit = 0.05;
-
+	
 	// Constructor
 	public Ataque(String nombre, String tipo, int potencia, int precision, int pp, boolean prioridad) {
 		if (tipo.equalsIgnoreCase("normal") || tipo.equalsIgnoreCase("especial") || tipo.equalsIgnoreCase("estado")) {
@@ -72,27 +73,22 @@ public abstract class Ataque {
 		return this.tipo;
 	}
 
+	protected boolean getPrioridad() {
+		return this.prioridad;
+	}
+
 	// Metodos
 	public boolean tienePps() {
 		return this.ppActual > 0;
 	}
 
 	public boolean acierta() {
-		int rng = (int) (Math.random() * 100);
 		return rng < this.precision;
 	}
 
 	protected boolean esCritico() {
-		int rng = (int) (Math.random() * 100);
 		int porcentajeCritico = (int) (probCrit * 100);
 		return rng < porcentajeCritico;
-	}
-
-	protected boolean tienePrioridad() {
-		if (!this.prioridad) {
-			return false;
-		}
-		return true;
 	}
 
 	public abstract void utilizar(Pokemon pAtacante, Pokemon pEnemigo);
@@ -100,6 +96,6 @@ public abstract class Ataque {
 	@Override
 	public String toString() {
 		return getNombre() + " | Tipo: " + getTipo() + " - Potencia: " + getPotencia() + " - Precision: "
-				+ getPrecision() + " - PP: " + getPpActual() + "/" + getPp() + " Prioridad: " + tienePrioridad();
+				+ getPrecision() + " - PP: " + getPpActual() + "/" + getPp() + " Prioridad: " + getPrioridad();
 	}
 }
