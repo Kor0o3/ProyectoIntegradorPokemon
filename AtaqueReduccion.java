@@ -3,12 +3,14 @@ package Programa;
 public class AtaqueReduccion extends AtaqueOfensivo {
 	private String caracteristica;
 	private int cantidad;
+	private Pokemon pAReducir;
 	
 	
-	public AtaqueReduccion(String nombre, int potencia, int precision, int pp, String caracteristica, int cantidad) {
+	public AtaqueReduccion(String nombre, int potencia, int precision, int pp, String caracteristica, int cantidad,  Pokemon pAReducir) {
 		super(nombre, potencia, precision, pp);
 		this.caracteristica = caracteristica;
 		this.cantidad = cantidad;
+		this.pAReducir = pAReducir;
 	}
 
 	@Override
@@ -26,7 +28,7 @@ public class AtaqueReduccion extends AtaqueOfensivo {
 					System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre());
 				}
 				
-				reducirCaracteristica(pAtacante);
+				reducirCaracteristica(this.pAReducir);
 				
 				System.out.println(pAtacante.validarNombre() + " bajó su " + this.caracteristica);
 				
@@ -38,20 +40,20 @@ public class AtaqueReduccion extends AtaqueOfensivo {
 		}
 	}
 	
-	public void reducirCaracteristica(Pokemon pAtacante ) {
+	public void reducirCaracteristica(Pokemon pAReducir) {
 		double reduccion=1;
 		
 		if(this.caracteristica.equalsIgnoreCase("AtF")) {
-			if(pAtacante.getNivAtF() <=6) {			
+			if(pAReducir.getNivAtF() <=6) {			
 				
-				pAtacante.setNivAtF(+cantidad);
+				pAReducir.setNivAtF(+cantidad);
 				
 				double resta= 0;
 				
-				if(pAtacante.getNivAtF()>=-6 && pAtacante.getNivAtF()<0) {
+				if(pAReducir.getNivAtF()>=-6 && pAReducir.getNivAtF()<0) {
 					resta = 0.67;
 					
-					for(int i=-1; i>=pAtacante.getNivAtF();i--) {
+					for(int i=-1; i>=pAReducir.getNivAtF();i--) {
 						if(i==-1) {
 							resta -= 0.17;
 						}
@@ -66,31 +68,31 @@ public class AtaqueReduccion extends AtaqueOfensivo {
 						}
 					}										
 				}
-				else if(pAtacante.getNivAtF()==0) {
-					pAtacante.setAtaqueEspecial(pAtacante.getCaracteristicaBase(0));
+				else if(pAReducir.getNivAtF()==0) {
+					pAReducir.setAtaqueEspecial(pAReducir.getCaracteristicaBase(0));
 				}
-				else if(pAtacante.getNivAtF()>0 && pAtacante.getNivAtF()<=6) {
+				else if(pAReducir.getNivAtF()>0 && pAReducir.getNivAtF()<=6) {
 					resta = 1;
 					
-					for(int i=1; i<=pAtacante.getNivAtF(); i++) {
+					for(int i=1; i<=pAReducir.getNivAtF(); i++) {
 						resta -= 0.50; 
 					}
 				}
 				
-				pAtacante.setAtaqueEspecial((int)(pAtacante.getCaracteristicaBase(0)*resta));
+				pAReducir.setAtaqueEspecial((int)(pAReducir.getCaracteristicaBase(0)*resta));
 			}
 		}
 		else if(this.caracteristica.equalsIgnoreCase("defF")) {
-			if(pAtacante.getNivDefF() <=6) {			
+			if(pAReducir.getNivDefF() <=6) {			
 				
-				pAtacante.setNivDefF(+cantidad);
+				pAReducir.setNivDefF(+cantidad);
 				
 				double resta= 0;
 				
-				if(pAtacante.getNivDefF()>=-6 && pAtacante.getNivDefF()<0) {
+				if(pAReducir.getNivDefF()>=-6 && pAReducir.getNivDefF()<0) {
 					resta = 0.67;
 					
-					for(int i=-1; i>=pAtacante.getNivAtF();i--) {
+					for(int i=-1; i>=pAReducir.getNivAtF();i--) {
 						if(i==-1) {
 							resta -= 0.17;
 						}
@@ -105,31 +107,31 @@ public class AtaqueReduccion extends AtaqueOfensivo {
 						}
 					}										
 				}
-				else if(pAtacante.getNivDefF()==0) {
-					pAtacante.setDefensaFisica(pAtacante.getCaracteristicaBase(1));
+				else if(pAReducir.getNivDefF()==0) {
+					pAReducir.setDefensaFisica(pAReducir.getCaracteristicaBase(1));
 				}
-				else if(pAtacante.getNivDefF()>0 && pAtacante.getNivDefF()<=6) {
+				else if(pAReducir.getNivDefF()>0 && pAReducir.getNivDefF()<=6) {
 					resta = 1;
 					
-					for(int i=1; i<=pAtacante.getNivDefF(); i++) {
+					for(int i=1; i<=pAReducir.getNivDefF(); i++) {
 						resta -= 0.50; 
 					}
 				}
 				
-				pAtacante.setDefensaFisica((int)(pAtacante.getCaracteristicaBase(1)*resta));
+				pAReducir.setDefensaFisica((int)(pAReducir.getCaracteristicaBase(1)*resta));
 			}
 		}
 		else if(this.caracteristica.equalsIgnoreCase("AtE")) {
-			if(pAtacante.getNivAtE() <=6) {			
+			if(pAReducir.getNivAtE() <=6) {			
 				
-				pAtacante.setNivAtE(+cantidad);
+				pAReducir.setNivAtE(+cantidad);
 				
 				double resta= 0;
 				
-				if(pAtacante.getNivAtE()>=-6 && pAtacante.getNivAtE()<0) {
+				if(pAReducir.getNivAtE()>=-6 && pAReducir.getNivAtE()<0) {
 					resta = 0.67;
 					
-					for(int i=-1; i>=pAtacante.getNivAtE();i--) {
+					for(int i=-1; i>=pAReducir.getNivAtE();i--) {
 						if(i==-1) {
 							resta -= 0.17;
 						}
@@ -144,31 +146,31 @@ public class AtaqueReduccion extends AtaqueOfensivo {
 						}
 					}										
 				}
-				else if(pAtacante.getNivAtE()==0) {
-					pAtacante.setAtaqueEspecial(pAtacante.getCaracteristicaBase(2));
+				else if(pAReducir.getNivAtE()==0) {
+					pAReducir.setAtaqueEspecial(pAReducir.getCaracteristicaBase(2));
 				}
-				else if(pAtacante.getNivAtE()>0 && pAtacante.getNivAtE()<=6) {
+				else if(pAReducir.getNivAtE()>0 && pAReducir.getNivAtE()<=6) {
 					resta = 1;
 					
-					for(int i=1; i<=pAtacante.getNivAtE(); i++) {
+					for(int i=1; i<=pAReducir.getNivAtE(); i++) {
 						resta -= 0.50; 
 					}
 				}
 				
-				pAtacante.setAtaqueEspecial((int)(pAtacante.getCaracteristicaBase(2)*resta));
+				pAReducir.setAtaqueEspecial((int)(pAReducir.getCaracteristicaBase(2)*resta));
 			}
 			
 		}else if(this.caracteristica.equalsIgnoreCase("DefE")) {
-			if(pAtacante.getNivDefE() <=6) {			
+			if(pAReducir.getNivDefE() <=6) {			
 				
-				pAtacante.setNivDefE(+cantidad);
+				pAReducir.setNivDefE(+cantidad);
 				
 				double resta= 0;
 				
-				if(pAtacante.getNivDefE()>=-6 && pAtacante.getNivDefE()<0) {
+				if(pAReducir.getNivDefE()>=-6 && pAReducir.getNivDefE()<0) {
 					resta = 0.67;
 					
-					for(int i=-1; i>=pAtacante.getNivAtF();i--) {
+					for(int i=-1; i>=pAReducir.getNivAtF();i--) {
 						if(i==-1) {
 							resta -= 0.17;
 						}
@@ -183,31 +185,31 @@ public class AtaqueReduccion extends AtaqueOfensivo {
 						}
 					}										
 				}
-				else if(pAtacante.getNivDefE()==0) {
-					pAtacante.setDefensaFisica(pAtacante.getCaracteristicaBase(3));
+				else if(pAReducir.getNivDefE()==0) {
+					pAReducir.setDefensaFisica(pAReducir.getCaracteristicaBase(3));
 				}
-				else if(pAtacante.getNivDefE()>0 && pAtacante.getNivDefE()<=6) {
+				else if(pAReducir.getNivDefE()>0 && pAReducir.getNivDefE()<=6) {
 					resta = 1;
 					
-					for(int i=1; i<=pAtacante.getNivDefE(); i++) {
+					for(int i=1; i<=pAReducir.getNivDefE(); i++) {
 						resta -= 0.50; 
 					}
 				}
 				
-				pAtacante.setDefensaFisica((int)(pAtacante.getCaracteristicaBase(3)*resta));
+				pAReducir.setDefensaFisica((int)(pAReducir.getCaracteristicaBase(3)*resta));
 			}
 		}else if(this.caracteristica.equalsIgnoreCase("Vel")) {
 			
-			if(pAtacante.getNivVel() <=6) {			
+			if(pAReducir.getNivVel() <=6) {			
 				
-				pAtacante.setNivVel(+cantidad);
+				pAReducir.setNivVel(+cantidad);
 				
 				double resta= 0;
 				
-				if(pAtacante.getNivVel()>=-6 && pAtacante.getNivVel()<0) {
+				if(pAReducir.getNivVel()>=-6 && pAReducir.getNivVel()<0) {
 					resta = 0.67;
 					
-					for(int i=-1; i>=pAtacante.getNivAtF();i--) {
+					for(int i=-1; i>=pAReducir.getNivAtF();i--) {
 						if(i==-1) {
 							resta -= 0.17;
 						}
@@ -222,18 +224,18 @@ public class AtaqueReduccion extends AtaqueOfensivo {
 						}
 					}										
 				}
-				else if(pAtacante.getNivVel()==0) {
-					pAtacante.setVelocidad(pAtacante.getCaracteristicaBase(4));
+				else if(pAReducir.getNivVel()==0) {
+					pAReducir.setVelocidad(pAReducir.getCaracteristicaBase(4));
 				}
-				else if(pAtacante.getNivVel()>0 && pAtacante.getNivVel()<=6) {
+				else if(pAReducir.getNivVel()>0 && pAReducir.getNivVel()<=6) {
 					resta = 1;
 					
-					for(int i=1; i<=pAtacante.getNivVel(); i++) {
+					for(int i=1; i<=pAReducir.getNivVel(); i++) {
 						resta -= 0.50; 
 					}
 				}
 				
-				pAtacante.setVelocidad((int)(pAtacante.getCaracteristicaBase(4)*resta));
+				pAReducir.setVelocidad((int)(pAReducir.getCaracteristicaBase(4)*resta));
 			}
 		}
 			
