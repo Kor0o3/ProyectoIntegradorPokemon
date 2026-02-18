@@ -13,11 +13,13 @@ public class combatePractica {
 		pokemon1.agregarAtaque(new AtaqueTipo("Portazo", "normal", 80, 75, 20, false));
 		pokemon1.agregarAtaque(new AtaqueTipo("Rayo", "especial", 90, 100, 15, false));
 		pokemon1.agregarAtaque(new AtaqueTipo("Trueno", "especial", 100, 45, 15, false));
-
-		Pokemon pokemon2 = new Pokemon("Charmander", "Clipper", 50, 85, 20, 65, 25, 120);
+		
+		Pokemon pokemon2 = new Pokemon("Charmander", "Clipper", 50, 45, 20, 30, 25, 120);
 		pokemon2.agregarAtaque(new AtaqueTipo("Placaje", "normal", 80, 100, 30, false));
 		pokemon2.agregarAtaque(new AtaqueTipo("Ascuas", "especial", 40, 951, 25, true));
-
+		pokemon2.agregarAtaque(new AtaqueDrenado("Gigadrenado", "normal", 2, 75, 100, 10, false));
+		
+		
 		if (pokemon1.esValidoParaCombate() && pokemon2.esValidoParaCombate()) {
 			mostrarPokemons(pokemon1, pokemon2);
 			do {
