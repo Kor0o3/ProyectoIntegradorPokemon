@@ -23,7 +23,7 @@ public class Pokemon {
 	protected int nivVel =0;
 	
 	//(AtF, DfF, AtF, DfE, V)
-	protected int[] caracteristicasBase;
+	private int[] caracteristicasBase;
 	
 	public List<Ataque> movimientos;
 
@@ -41,7 +41,7 @@ public class Pokemon {
 		this(nombrePokemon, null, velocidad, ataqueFisico, defensaFisico, ataqueEspecial, defensaEspecial,
 				puntosVidaMaximo);
 		
-		this.caracteristicasBase = new int[] {this.ataqueFisico,this.defensaFisico,this.ataqueEspecial,this.defensaEspecial};
+		this.caracteristicasBase = new int[] {this.ataqueFisico,this.defensaFisico,this.ataqueEspecial,this.defensaEspecial, this.velocidad};
 	}
 
 	public Pokemon(String nombrePokemon, String mote, int velocidad, int ataqueFisico, int defensaFisico,
@@ -58,7 +58,7 @@ public class Pokemon {
 		this.puntosVidaActuales = puntosVidaMaximo;
 		this.movimientos = new ArrayList<>();
 		
-		this.caracteristicasBase = new int[] {this.ataqueFisico,this.defensaFisico,this.ataqueEspecial,this.defensaEspecial};
+		this.caracteristicasBase = new int[] {this.ataqueFisico,this.defensaFisico,this.ataqueEspecial,this.defensaEspecial, this.velocidad};
 
 		int totalPoder = velocidad + ataqueFisico + defensaFisico + ataqueEspecial + defensaEspecial + puntosVidaMaximo;
 
@@ -218,6 +218,10 @@ public class Pokemon {
 
 	public void setNivVel(int nivVel) {
 		this.nivVel = nivVel;
+	}
+
+	public int getCaracteristicaBase(int i) {
+		return caracteristicasBase[i];
 	}
 
 	// Métodos
