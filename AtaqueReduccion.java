@@ -46,7 +46,7 @@ public class AtaqueReduccion extends AtaqueOfensivo {
 		if(this.caracteristica.equalsIgnoreCase("AtF")) {
 			if(pAReducir.getNivAtF() <=6) {			
 				
-				pAReducir.setNivAtF(+cantidad);
+				pAReducir.setNivAtF(-cantidad);
 				
 				double resta= 0;
 				
@@ -85,7 +85,7 @@ public class AtaqueReduccion extends AtaqueOfensivo {
 		else if(this.caracteristica.equalsIgnoreCase("defF")) {
 			if(pAReducir.getNivDefF() <=6) {			
 				
-				pAReducir.setNivDefF(+cantidad);
+				pAReducir.setNivDefF(-cantidad);
 				
 				double resta= 0;
 				
@@ -124,7 +124,7 @@ public class AtaqueReduccion extends AtaqueOfensivo {
 		else if(this.caracteristica.equalsIgnoreCase("AtE")) {
 			if(pAReducir.getNivAtE() <=6) {			
 				
-				pAReducir.setNivAtE(+cantidad);
+				pAReducir.setNivAtE(-cantidad);
 				
 				double resta= 0;
 				
@@ -163,7 +163,7 @@ public class AtaqueReduccion extends AtaqueOfensivo {
 		}else if(this.caracteristica.equalsIgnoreCase("DefE")) {
 			if(pAReducir.getNivDefE() <=6) {			
 				
-				pAReducir.setNivDefE(+cantidad);
+				pAReducir.setNivDefE(-cantidad);
 				
 				double resta= 0;
 				
@@ -202,7 +202,7 @@ public class AtaqueReduccion extends AtaqueOfensivo {
 			
 			if(pAReducir.getNivVel() <=6) {			
 				
-				pAReducir.setNivVel(+cantidad);
+				pAReducir.setNivVel(-cantidad);
 				
 				double resta= 0;
 				
