@@ -1,9 +1,7 @@
 package Programa;
 
 public class AtaqueRetroceso extends Ataque {
-	protected int danioRetrocesoVidaMaximaUsuario;
-	protected int danioRetrocesoVidaActualUsuario;
-	protected int danioRetrocesoDanioProvocado;
+	
 
 	public AtaqueRetroceso(String nombre, String tipo, int potencia, int precision, int pp, boolean prioridad) {
 		super(nombre, tipo, potencia, precision, pp, prioridad);
