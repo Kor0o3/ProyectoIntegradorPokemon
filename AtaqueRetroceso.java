@@ -32,18 +32,7 @@ public class AtaqueRetroceso extends Ataque {
 
 	
 
-	public int getDanioRetrocesoVidaMaximaUsuario() {
-		return danioRetrocesoVidaMaximaUsuario;
-	}
-
-	public int getDanioRetrocesoVidaActualUsuario() {
-		return danioRetrocesoVidaActualUsuario;
-	}
-
-	public int getDanioRetrocesoDanioProvocado() {
-		return danioRetrocesoDanioProvocado;
-	}
-
+	
 	
 
 }
