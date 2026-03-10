@@ -1,4 +1,4 @@
-package Programa;
+package ProyectoIntegradorPokemon;
 
 public class AtaqueTipo extends AtaqueOfensivos {
 	public AtaqueTipo(String nombre, String tipo, int potencia, int precision, int pp, boolean prioridad) {

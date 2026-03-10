@@ -1,4 +1,4 @@
-package Programa;
+package ProyectoIntegradorPokemon;
 
 import java.util.Scanner;
 

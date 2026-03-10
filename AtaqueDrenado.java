@@ -1,4 +1,4 @@
-package Programa;
+package ProyectoIntegradorPokemon;
 
 public class AtaqueDrenado extends AtaqueTipo {
 	protected int curacion;

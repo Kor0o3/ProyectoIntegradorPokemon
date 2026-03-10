@@ -1,4 +1,4 @@
-package Programa;
+package ProyectoIntegradorPokemon;
 
 public abstract class AtaquesEstado extends Ataque{
 

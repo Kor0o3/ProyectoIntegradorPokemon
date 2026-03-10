@@ -1,4 +1,4 @@
-package Programa;
+package ProyectoIntegradorPokemon;
 
 public abstract class AtaqueOfensivos extends Ataque {
 	// Si tocais algo de esta clase comentarlo al igual que con las otras por si
