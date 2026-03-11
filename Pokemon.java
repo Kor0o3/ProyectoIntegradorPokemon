@@ -15,6 +15,16 @@ public class Pokemon {
 	protected int puntosVidaActuales;
 	protected int puntosVidaMaximo;
 	protected int poderMaximo = 600;
+	
+	protected int nivAtF =0;
+	protected int nivDefF =0;
+	protected int nivAtE =0;
+	protected int nivDefE =0;
+	protected int nivVel =0;
+	
+	//(AtF, DfF, AtF, DfE, V)
+	private int[] caracteristicasBase;
+	
 	public List<Ataque> movimientos;
 
 	// Constructores
@@ -159,6 +169,49 @@ public class Pokemon {
 		}
 	}
 
+	public int getNivAtF() {
+		return nivAtF;
+	}
+
+	public void setNivAtF(int nivAtF) {
+		this.nivAtF = nivAtF;
+	}
+
+	public int getNivDefF() {
+		return nivDefF;
+	}
+
+	public void setNivDefF(int nivDefF) {
+		this.nivDefF = nivDefF;
+	}
+
+	public int getNivAtE() {
+		return nivAtE;
+	}
+
+	public void setNivAtE(int nivAtE) {
+		this.nivAtE = nivAtE;
+	}
+
+	public int getNivDefE() {
+		return nivDefE;
+	}
+
+	public void setNivDefE(int nivDefE) {
+		this.nivDefE = nivDefE;
+	}
+
+	public int getNivVel() {
+		return nivVel;
+	}
+
+	public void setNivVel(int nivVel) {
+		this.nivVel = nivVel;
+	}
+
+	public int getCaracteristicaBase(int i) {
+		return caracteristicasBase[i];
+	}
 	// Métodos
 	public String validarNombre() {
 		if (this.mote != null) {

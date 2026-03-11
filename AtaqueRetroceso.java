@@ -1,4 +1,4 @@
-package Programa;
+package ProyectoIntegradorPokemon;
 
 public class AtaqueRetroceso extends Ataque {
 	
