@@ -1,0 +1,28 @@
+package ProyectoIntegradorPokemon;
+
+public class AtaqueRecuperacion extends AtaquesEstado {
+
+	public AtaqueRecuperacion(String nombre, String tipo, int precision, int pp, boolean prioridad) {
+		super(nombre, tipo, precision, pp, prioridad);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void utilizar(Pokemon pAtacante, Pokemon pEnemigo) {
+
+		int puntosVida = pAtacante.getPuntosVidaMaximo() / 2;
+
+		if (tienePps()) {
+			ppActual--;
+			if (acierta()) {
+				pAtacante.reducirPuntosDeVida(-puntosVida);
+				System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre());
+			} else {
+				System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre() + " pero falló...");
+			}
+		} else {
+			System.out.println(getNombre() + " no tiene PP");
+		}
+	}
+
+}
