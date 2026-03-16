@@ -14,7 +14,12 @@ public class AtaqueRetroceso extends AtaqueTipo {
 			if (acierta()) {
 				
 				if (this.getTipo().equalsIgnoreCase("normal")) {
-					if(rng>25) {
+					danio = calcularDanio(pAtacante.getAtaqueFisico(), pEnemigo.getDefensaFisica());
+				} else if (this.getTipo().equalsIgnoreCase("especial")) {
+					danio = calcularDanio(pAtacante.getAtaqueEspecial(), pEnemigo.getDefensaEspecial());
+				}
+				
+				if(rng>25) {
 						pAtacante.reducirPuntosDeVida(pAtacante.puntosVidaActuales/2);
 						System.out.println("La salud de "+pAtacante.nombrePokemon+" se ha reducido por su ataque con retroceso!");
 					}else if(rng>65) {
@@ -26,12 +31,7 @@ public class AtaqueRetroceso extends AtaqueTipo {
 						pAtacante.reducirPuntosDeVida(this.potencia/4); 
 						System.out.println("La salud de "+pAtacante.nombrePokemon+" se ha reducido moderadamente por su ataque con retroceso!");
 					}
-					
-
-					danio = calcularDanio(pAtacante.getAtaqueFisico(), pEnemigo.getDefensaFisica());
-				} else if (this.getTipo().equalsIgnoreCase("especial")) {
-					danio = calcularDanio(pAtacante.getAtaqueEspecial(), pEnemigo.getDefensaEspecial());
-				}
+				
 				pEnemigo.reducirPuntosDeVida(danio);
 				if (esCritico()) {
 					System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre() + ". Golpe critico!");
