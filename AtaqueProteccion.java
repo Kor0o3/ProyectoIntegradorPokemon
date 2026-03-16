@@ -10,13 +10,15 @@ public class AtaqueProteccion extends AtaquesEstado {
 		@Override
 		public void utilizar(Pokemon pAtacante, Pokemon pEnemigo) {
 
-			int puntosDefensa = pAtacante.getDefensaFisica() * rng;
+			int puntosDefensa = pAtacante.getDefensaFisica();
 			
 			if (tienePps()) {
 				ppActual--;
 				if (acierta()) {
 					pAtacante.setDefensaFisica(+puntosDefensa);
 					System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre());
+					pAtacante.getDefensaFisica();
+					System.out.println(pAtacante.validarNombre() + "Su defensa a subido" + pAtacante.getDefensaFisica());
 				} else {
 					System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre() + " pero falló...");
 				}
