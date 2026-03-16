@@ -16,7 +16,7 @@ public abstract class Ataque {
 	
 	// Constructor
 	public Ataque(String nombre, String tipo, int potencia, int precision, int pp, boolean prioridad) {
-		if (tipo.equalsIgnoreCase("normal") || tipo.equalsIgnoreCase("especial") || tipo.equalsIgnoreCase("estado")) {
+		if (tipo.equalsIgnoreCase("fisico") || tipo.equalsIgnoreCase("especial") || tipo.equalsIgnoreCase("estado")) {
 			this.tipo = tipo;
 			if (potencia < 0) {
 				this.potencia = 1;

@@ -15,16 +15,16 @@ public class Pokemon {
 	protected int puntosVidaActuales;
 	protected int puntosVidaMaximo;
 	protected int poderMaximo = 600;
-	
-	protected int nivAtF =0;
-	protected int nivDefF =0;
-	protected int nivAtE =0;
-	protected int nivDefE =0;
-	protected int nivVel =0;
-	
-	//(AtF, DfF, AtF, DfE, V)
+
+	protected int nivAtF = 0;
+	protected int nivDefF = 0;
+	protected int nivAtE = 0;
+	protected int nivDefE = 0;
+	protected int nivVel = 0;
+
+	// (AtF, DfF, AtF, DfE, V)
 	private int[] caracteristicasBase;
-	
+
 	public List<Ataque> movimientos;
 
 	// Constructores
@@ -56,6 +56,8 @@ public class Pokemon {
 		this.puntosVidaActuales = puntosVidaMaximo;
 		this.movimientos = new ArrayList<>();
 
+		this.caracteristicasBase = new int[] {this.ataqueFisico,this.defensaFisico,this.ataqueEspecial,this.defensaEspecial, this.velocidad};
+		
 		int totalPoder = velocidad + ataqueFisico + defensaFisico + ataqueEspecial + defensaEspecial + puntosVidaMaximo;
 
 		if (ataqueFisico <= 0 || defensaFisico <= 0 || ataqueEspecial <= 0 || defensaEspecial <= 0 || velocidad <= 0
@@ -212,6 +214,7 @@ public class Pokemon {
 	public int getCaracteristicaBase(int i) {
 		return caracteristicasBase[i];
 	}
+
 	// Métodos
 	public String validarNombre() {
 		if (this.mote != null) {
@@ -275,9 +278,9 @@ public class Pokemon {
 		if (movimientos.size() < 4 && ataque.getTipo() != null) {
 			movimientos.add(ataque);
 			agregado = true;
-		} 
-		
-		if(!agregado && ataque.getTipo()!= null) {
+		}
+
+		if (!agregado && ataque.getTipo() != null) {
 			System.out.println(ataque.getNombre() + " no se añadira, " + this.validarNombre()
 					+ " no puede tener mas de 4 ataques");
 		}
@@ -286,7 +289,7 @@ public class Pokemon {
 	public boolean AtacaConPrioridad(int opcion) {
 		return movimientos.get(opcion - 1).getPrioridad();
 	}
-	
+
 	public boolean puedesUsarAtaque(int opcion) {
 		return movimientos.get(opcion - 1).tienePps();
 	}

@@ -9,15 +9,20 @@ public class combatePractica {
 		int masVeloz = 0, opcionP1 = 0, opcionP2 = 0, cont = 1;
 
 		Pokemon pokemon1 = new Pokemon("Pikachu", 45, 55, 20, 100, 10, 120);
-		pokemon1.agregarAtaque(new AtaqueTipo("Ataque Rapido", "normal", 30, 60, 15, true));
-		pokemon1.agregarAtaque(new AtaqueTipo("Portazo", "normal", 80, 75, 20, false));
+		pokemon1.agregarAtaque(new AtaqueTipo("Ataque Rapido", "fisico", 30, 60, 15, true));
+		pokemon1.agregarAtaque(new AtaqueTipo("Portazo", "fisico", 80, 75, 20, false));
 		pokemon1.agregarAtaque(new AtaqueTipo("Rayo", "especial", 90, 100, 15, false));
-		pokemon1.agregarAtaque(new AtaqueTipo("Trueno", "especial", 100, 45, 15, false));
+		pokemon1.agregarAtaque(new AtaqueRetroceso("Placaje electrico", "fisico", 120, 100, 15, false));
 		
 		Pokemon pokemon2 = new Pokemon("Charmander", "Clipper", 50, 45, 20, 30, 25, 120);
-		pokemon2.agregarAtaque(new AtaqueTipo("Placaje", "normal", 80, 100, 30, false));
+		pokemon2.agregarAtaque(new AtaqueReduccion("Viento Hielo", "especial","Vel",1,pokemon1,55,95,15,false));
+		//pokemon2.agregarAtaque(new AtaqueReduccion("Rencor Reprimido", "especial", "AtF", 1, pokemon1, 75, 100, 5, false));
+		//pokemon2.agregarAtaque(new AtaqueReduccion("Arremetida", "fisico", "DefF", 1, pokemon2, 120, 100, 5, false));
+		//pokemon2.agregarAtaque(new AtaqueMejora("Nitrocarga", "fisico", "Vel", 1, 50, 100, 20, false));
+		//pokemon2.agregarAtaque(new AtaqueMejora("Puño incrimento", "fisico", "AtF", 1, 40, 100, 20, false));
 		pokemon2.agregarAtaque(new AtaqueTipo("Ascuas", "especial", 40, 951, 25, true));
-		pokemon2.agregarAtaque(new AtaqueDrenado("Gigadrenado", "normal", 2, 75, 100, 10, false));
+		pokemon2.agregarAtaque(new AtaqueDrenado("Gigadrenado", "fisico", 2, 75, 100, 10, false));
+		pokemon2.agregarAtaque(new AtaqueRecuperacion("Recuperacion", "estado", 100, 10, false));
 		
 		
 		if (pokemon1.esValidoParaCombate() && pokemon2.esValidoParaCombate()) {
