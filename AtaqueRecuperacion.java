@@ -16,8 +16,10 @@ public class AtaqueRecuperacion extends AtaquesEstado {
 		if (tienePps()) {
 			ppActual--;
 			if (acierta()) {
-				if ( curaTotal < pAtacante.getPuntosVidaMaximo()) {
+				if ( curaTotal <= pAtacante.getPuntosVidaMaximo()) {
 					pAtacante.reducirPuntosDeVida(-puntosVida);
+				} else {
+					pAtacante.setPuntosVidaActuales(pAtacante.getPuntosVidaMaximo());
 				}
 				System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre());
 			} else {

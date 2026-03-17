@@ -16,7 +16,6 @@ public class AtaqueDrenado extends AtaqueTipo {
 	@Override
 	public void utilizar(Pokemon pAtacante, Pokemon pEnemigo) {
 		int danio = 0;
-		int cura;
 		if (tienePps()) {
 			ppActual--;
 			if (acierta()) {
@@ -25,10 +24,17 @@ public class AtaqueDrenado extends AtaqueTipo {
 				} else if (this.getTipo().equalsIgnoreCase("especial")) {
 					danio = calcularDanio(pAtacante.getAtaqueEspecial(), pEnemigo.getDefensaEspecial());
 				}
-				cura = danio / this.getCuracion();
+				int cura = danio / this.getCuracion();
+				int curaTotal = cura + pAtacante.getPuntosVidaActuales();
 				pEnemigo.reducirPuntosDeVida(danio);
-				pAtacante.reducirPuntosDeVida(-cura);
-				System.out.println(cura);
+
+				if (curaTotal <= pAtacante.getPuntosVidaMaximo()) {
+					pAtacante.reducirPuntosDeVida(-cura);
+				} else {
+					pAtacante.setPuntosVidaActuales(pAtacante.getPuntosVidaMaximo());
+				}
+				
+
 				if (esCritico()) {
 					System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre() + ". Golpe critico!");
 				} else {
