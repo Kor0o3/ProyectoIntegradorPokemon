@@ -20,7 +20,7 @@ public class AtaqueDrenado extends AtaqueTipo {
 		if (tienePps()) {
 			ppActual--;
 			if (acierta()) {
-				if (this.getTipo().equalsIgnoreCase("normal")) {
+				if (this.getTipo().equalsIgnoreCase("fisico")) {
 					danio = calcularDanio(pAtacante.getAtaqueFisico(), pEnemigo.getDefensaFisica());
 				} else if (this.getTipo().equalsIgnoreCase("especial")) {
 					danio = calcularDanio(pAtacante.getAtaqueEspecial(), pEnemigo.getDefensaEspecial());

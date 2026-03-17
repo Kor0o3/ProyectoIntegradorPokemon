@@ -11,11 +11,14 @@ public class AtaqueRecuperacion extends AtaquesEstado {
 	public void utilizar(Pokemon pAtacante, Pokemon pEnemigo) {
 
 		int puntosVida = pAtacante.getPuntosVidaMaximo() / 2;
+		int curaTotal = puntosVida + pAtacante.getPuntosVidaActuales();
 
 		if (tienePps()) {
 			ppActual--;
 			if (acierta()) {
-				pAtacante.reducirPuntosDeVida(-puntosVida);
+				if ( curaTotal < pAtacante.getPuntosVidaMaximo()) {
+					pAtacante.reducirPuntosDeVida(-puntosVida);
+				}
 				System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre());
 			} else {
 				System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre() + " pero falló...");
