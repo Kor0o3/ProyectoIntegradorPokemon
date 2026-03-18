@@ -2,8 +2,8 @@ package ProyectoIntegradorPokemon;
 
 public class AtaqueRecuperacion extends AtaquesEstado {
 
-	public AtaqueRecuperacion(String nombre, String tipo, int precision, int pp, boolean prioridad) {
-		super(nombre, "estado", precision, pp, prioridad);
+	public AtaqueRecuperacion(String nombre, String categoria, int precision, int pp, boolean prioridad, Tipo.Tipos tipoAtaque) {
+		super(nombre, "estado", precision, pp, prioridad, tipoAtaque);
 		// TODO Auto-generated constructor stub
 	}
 

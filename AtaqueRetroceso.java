@@ -3,8 +3,8 @@ package ProyectoIntegradorPokemon;
 public class AtaqueRetroceso extends AtaqueTipo {
 	
 
-	public AtaqueRetroceso(String nombre, String tipo, int potencia, int precision, int pp, boolean prioridad,Tipo.Tipos tipoAtaque) { 
-		super(nombre, tipo, potencia, precision, pp, prioridad,tipoAtaque);
+	public AtaqueRetroceso(String nombre, String categoria, int potencia, int precision, int pp, boolean prioridad,Tipo.Tipos tipoAtaque) { 
+		super(nombre, categoria, potencia, precision, pp, prioridad,tipoAtaque);
 		// TODO Auto-generated constructor stub
 	}
 	public void utilizar(Pokemon pAtacante, Pokemon pEnemigo) {
@@ -13,9 +13,9 @@ public class AtaqueRetroceso extends AtaqueTipo {
 			ppActual--;
 			if (acierta()) {
 				
-				if (this.getTipo().equalsIgnoreCase("fisico")) {
+				if (this.getCategoria().equalsIgnoreCase("fisico")) {
 					danio = calcularDanio(pAtacante.getAtaqueFisico(), pEnemigo.getDefensaFisica());
-				} else if (this.getTipo().equalsIgnoreCase("especial")) {
+				} else if (this.getCategoria().equalsIgnoreCase("especial")) {
 					danio = calcularDanio(pAtacante.getAtaqueEspecial(), pEnemigo.getDefensaEspecial());
 				}
 				

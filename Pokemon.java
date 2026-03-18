@@ -280,12 +280,12 @@ public class Pokemon {
 
 	public void agregarAtaque(Ataque ataque) {
 		boolean agregado = false;
-		if (movimientos.size() < 4 && ataque.getTipo() != null) {
+		if (movimientos.size() < 4 && ataque.getCategoria() != null) {
 			movimientos.add(ataque);
 			agregado = true;
 		}
 
-		if (!agregado && ataque.getTipo() != null) {
+		if (!agregado && ataque.getCategoria() != null) {
 			System.out.println(ataque.getNombre() + " no se añadira, " + this.validarNombre()
 					+ " no puede tener mas de 4 ataques");
 		}

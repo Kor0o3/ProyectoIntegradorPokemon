@@ -9,16 +9,16 @@ public abstract class Ataque {
 	protected int pp;
 	protected int ppActual;
 	protected String nombre;
-	protected String tipo;
+	protected String categoria;
 	protected boolean prioridad;
 	protected int rng = (int) (Math.random() * 100);
 	protected static double probCrit = 0.05;
 	protected Tipo.Tipos tipoAtaque;
 	//he añadido el atributo para el tipo del ataque y usarlo en el constructor
 	// Constructor
-	public Ataque(String nombre, String tipo, int potencia, int precision, int pp, boolean prioridad ,Tipo.Tipos tipoAtaque) {
-		if (tipo.equalsIgnoreCase("fisico") || tipo.equalsIgnoreCase("especial") || tipo.equalsIgnoreCase("estado")) {
-			this.tipo = tipo;
+	public Ataque(String nombre, String categoria, int potencia, int precision, int pp, boolean prioridad ,Tipo.Tipos tipoAtaque) {
+		if (categoria.equalsIgnoreCase("fisico") || categoria.equalsIgnoreCase("especial") || categoria.equalsIgnoreCase("estado")) {
+			this.categoria = categoria;
 			this.tipoAtaque = tipoAtaque;
 			if (potencia < 0) {
 				this.potencia = 1;
@@ -71,8 +71,8 @@ public abstract class Ataque {
 		return this.nombre;
 	}
 
-	public String getTipo() {
-		return this.tipo;
+	public String getCategoria() {
+		return this.categoria;
 	}
 	
 	public Tipo.Tipos getTipoAtaque() {
@@ -101,7 +101,7 @@ public abstract class Ataque {
 
 	@Override
 	public String toString() {
-		return getNombre() + " | Tipo: " + getTipo() + " - Potencia: " + getPotencia() + " - Precision: "
+		return getNombre() + " | Categoria: " + getCategoria() + " - Potencia: " + getPotencia() + " - Precision: "
 				+ getPrecision() + " - PP: " + getPpActual() + "/" + getPp() + " Prioridad: " + getPrioridad();
 	}
 }

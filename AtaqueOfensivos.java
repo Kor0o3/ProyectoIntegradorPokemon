@@ -3,8 +3,8 @@ package ProyectoIntegradorPokemon;
 public abstract class AtaqueOfensivos extends Ataque {
 	// Si tocais algo de esta clase comentarlo al igual que con las otras por si
 	// luego falla
-	public AtaqueOfensivos(String nombre, String tipo, int potencia, int precision, int pp, boolean prioridad,Tipo.Tipos tipoAtaque) {
-		super(nombre, tipo, potencia, precision, pp, prioridad, tipoAtaque);
+	public AtaqueOfensivos(String nombre, String categoria, int potencia, int precision, int pp, boolean prioridad,Tipo.Tipos tipoAtaque) {
+		super(nombre, categoria, potencia, precision, pp, prioridad, tipoAtaque);
 		// TODO Auto-generated constructor stub
 	}
 

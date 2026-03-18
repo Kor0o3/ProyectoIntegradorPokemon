@@ -3,9 +3,9 @@ package ProyectoIntegradorPokemon;
 public class AtaqueDrenado extends AtaqueTipo {
 	protected int curacion;
 
-	public AtaqueDrenado(String nombre, String tipo, int curacion, int potencia, int precision, int pp,
+	public AtaqueDrenado(String nombre, String categoria, int curacion, int potencia, int precision, int pp,
 			boolean prioridad,Tipo.Tipos tipoAtaque) {
-		super(nombre, tipo, potencia, precision, pp, prioridad,tipoAtaque);
+		super(nombre, categoria, potencia, precision, pp, prioridad,tipoAtaque);
 		this.curacion = curacion;
 	}
 
@@ -19,9 +19,9 @@ public class AtaqueDrenado extends AtaqueTipo {
 		if (tienePps()) {
 			ppActual--;
 			if (acierta()) {
-				if (this.getTipo().equalsIgnoreCase("fisico")) {
+				if (this.getCategoria().equalsIgnoreCase("fisico")) {
 					danio = calcularDanio(pAtacante.getAtaqueFisico(), pEnemigo.getDefensaFisica());
-				} else if (this.getTipo().equalsIgnoreCase("especial")) {
+				} else if (this.getCategoria().equalsIgnoreCase("especial")) {
 					danio = calcularDanio(pAtacante.getAtaqueEspecial(), pEnemigo.getDefensaEspecial());
 				}
 				int cura = danio / this.getCuracion();

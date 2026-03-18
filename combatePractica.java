@@ -17,8 +17,8 @@ public class combatePractica {
 		pokemon1.agregarAtaque(new AtaqueTipo("Rayo", "especial", 90, 100, 15, false, null));
 		pokemon1.agregarAtaque(new AtaqueRetroceso("Placaje electrico", "fisico", 120, 100, 15, false, null));
 		
-		Pokemon pokemon2 = new Pokemon("Charmander", "Clipper", 50, 45, 20, 30, 25, 120, Tipo.Tipos.Tierra, null);
-		pokemon2.agregarAtaque(new AtaqueReduccion("Viento Hielo", "especial","Vel",1,pokemon1,55,95,15,false, null));
+		Pokemon pokemon2 = new Pokemon("Charmander", "Clipper", 50, 45, 20, 30, 25, 120, Tipo.Tipos.Fuego, null);
+		pokemon2.agregarAtaque(new AtaqueReduccion("Viento Hielo", "especial","Vel",1,pokemon1,55,95,15,false, Tipos.Agua));
 		//pokemon2.agregarAtaque(new AtaqueReduccion("Rencor Reprimido", "especial", "AtF", 1, pokemon1, 75, 100, 5, false));
 		//pokemon2.agregarAtaque(new AtaqueReduccion("Arremetida", "fisico", "DefF", 1, pokemon2, 120, 100, 5, false));
 		//pokemon2.agregarAtaque(new AtaqueMejora("Nitrocarga", "fisico", "Vel", 1, 50, 100, 20, false));

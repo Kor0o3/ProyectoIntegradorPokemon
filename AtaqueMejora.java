@@ -5,7 +5,7 @@ public class AtaqueMejora extends AtaqueOfensivos {
 	private int cantidad;
 
 	public AtaqueMejora(String nombre, String tipo, String caracteristica, int cantidad, int potencia, int precision,
-			int pp, boolean prioridad,Tipo.Tipos tipoAtaque) {
+			int pp, boolean prioridad, Tipo.Tipos tipoAtaque) {
 		super(nombre, tipo, potencia, precision, pp, prioridad, tipoAtaque);
 		this.caracteristica = caracteristica;
 		this.cantidad = cantidad;
@@ -19,9 +19,9 @@ public class AtaqueMejora extends AtaqueOfensivos {
 			ppActual--;
 
 			if (acierta()) {
-				if (this.getTipo().equalsIgnoreCase("fisico")) {
+				if (this.getCategoria().equalsIgnoreCase("fisico")) {
 					danio = calcularDanio(pAtacante.getAtaqueFisico(), pEnemigo.getDefensaFisica());
-				} else if (this.getTipo().equalsIgnoreCase("especial")) {
+				} else if (this.getCategoria().equalsIgnoreCase("especial")) {
 					danio = calcularDanio(pAtacante.getAtaqueEspecial(), pEnemigo.getDefensaEspecial());
 				}
 				pEnemigo.reducirPuntosDeVida(danio);

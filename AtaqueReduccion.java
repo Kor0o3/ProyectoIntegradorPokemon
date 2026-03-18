@@ -6,8 +6,8 @@ public class AtaqueReduccion extends AtaqueOfensivos {
 	private Pokemon pAReducir;
 
 	public AtaqueReduccion(String nombre, String tipo, String caracteristica, int cantidad, Pokemon pAReducir,
-			int potencia, int precision, int pp, boolean prioridad ,Tipo.Tipos tipoAtaque) {
-		super(nombre, tipo, potencia, precision, pp, prioridad,tipoAtaque);
+			int potencia, int precision, int pp, boolean prioridad, Tipo.Tipos tipoAtaque) {
+		super(nombre, tipo, potencia, precision, pp, prioridad, tipoAtaque);
 		this.caracteristica = caracteristica;
 		this.cantidad = cantidad;
 		this.pAReducir = pAReducir;
@@ -20,9 +20,9 @@ public class AtaqueReduccion extends AtaqueOfensivos {
 		if (tienePps()) {
 			ppActual--;
 			if (acierta()) {
-				if (this.getTipo().equalsIgnoreCase("fisico")) {
+				if (this.getCategoria().equalsIgnoreCase("fisico")) {
 					danio = calcularDanio(pAtacante.getAtaqueFisico(), pEnemigo.getDefensaFisica());
-				} else if (this.getTipo().equalsIgnoreCase("especial")) {
+				} else if (this.getCategoria().equalsIgnoreCase("especial")) {
 					danio = calcularDanio(pAtacante.getAtaqueEspecial(), pEnemigo.getDefensaEspecial());
 				}
 				pEnemigo.reducirPuntosDeVida(danio);
@@ -54,12 +54,12 @@ public class AtaqueReduccion extends AtaqueOfensivos {
 				if (pAReducir.getNivAtF() >= -6 && pAReducir.getNivAtF() < 0) {
 					resta = 0.67;
 
-					for (int i = -1; i >= pAReducir.getNivAtF(); i--) {
-						if (i == -1) {
+					for (int i = -2; i >= pAReducir.getNivAtF(); i--) {
+						if (i == -2) {
 							resta -= 0.17;
-						} else if (i == -2) {
-							resta -= 0.1;
 						} else if (i == -3) {
+							resta -= 0.1;
+						}else if (i == -4) {
 							resta -= 0.07;
 						} else if (i < -3) {
 							resta -= 0.04;
@@ -87,12 +87,12 @@ public class AtaqueReduccion extends AtaqueOfensivos {
 				if (pAReducir.getNivDefF() >= -6 && pAReducir.getNivDefF() < 0) {
 					resta = 0.67;
 
-					for (int i = -1; i >= pAReducir.getNivDefF(); i--) {
-						if (i == -1) {
+					for (int i = -2; i >= pAReducir.getNivDefF(); i--) {
+						if (i == -2) {
 							resta -= 0.17;
-						} else if (i == -2) {
-							resta -= 0.1;
 						} else if (i == -3) {
+							resta -= 0.1;
+						}else if (i == -4) {
 							resta -= 0.07;
 						} else if (i < -3) {
 							resta -= 0.04;
@@ -120,12 +120,12 @@ public class AtaqueReduccion extends AtaqueOfensivos {
 				if (pAReducir.getNivAtE() >= -6 && pAReducir.getNivAtE() < 0) {
 					resta = 0.67;
 
-					for (int i = -1; i >= pAReducir.getNivAtE(); i--) {
-						if (i == -1) {
+					for (int i = -2; i >= pAReducir.getNivAtE(); i--) {
+						if (i == -2) {
 							resta -= 0.17;
-						} else if (i == -2) {
-							resta -= 0.1;
 						} else if (i == -3) {
+							resta -= 0.1;
+						}else if (i == -4) {
 							resta -= 0.07;
 						} else if (i < -3) {
 							resta -= 0.04;
@@ -154,12 +154,12 @@ public class AtaqueReduccion extends AtaqueOfensivos {
 				if (pAReducir.getNivDefE() >= -6 && pAReducir.getNivDefE() < 0) {
 					resta = 0.67;
 
-					for (int i = -1; i >= pAReducir.getNivAtF(); i--) {
-						if (i == -1) {
+					for (int i = -2; i >= pAReducir.getNivAtF(); i--) {
+						if (i == -2) {
 							resta -= 0.17;
-						} else if (i == -2) {
-							resta -= 0.1;
 						} else if (i == -3) {
+							resta -= 0.1;
+						}else if (i == -4) {
 							resta -= 0.07;
 						} else if (i < -3) {
 							resta -= 0.04;
@@ -188,12 +188,12 @@ public class AtaqueReduccion extends AtaqueOfensivos {
 				if (pAReducir.getNivVel() >= -6 && pAReducir.getNivVel() < 0) {
 					resta = 0.67;
 
-					for (int i = -1; i >= pAReducir.getNivAtF(); i--) {
-						if (i == -1) {
+					for (int i = -2; i >= pAReducir.getNivAtF(); i--) {
+						if (i == -2) {
 							resta -= 0.17;
-						} else if (i == -2) {
-							resta -= 0.1;
 						} else if (i == -3) {
+							resta -= 0.1;
+						}else if (i == -4) {
 							resta -= 0.07;
 						} else if (i < -3) {
 							resta -= 0.04;
