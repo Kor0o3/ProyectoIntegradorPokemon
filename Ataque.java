@@ -102,6 +102,6 @@ public abstract class Ataque {
 	@Override
 	public String toString() {
 		return getNombre() + " | Categoria: " + getCategoria() + " - Potencia: " + getPotencia() + " - Precision: "
-				+ getPrecision() + " - PP: " + getPpActual() + "/" + getPp() + " Prioridad: " + getPrioridad();
+				+ getPrecision() + " - PP: " + getPpActual() + "/" + getPp() + " - Prioridad: " + getPrioridad() + " - Tipo: "+ getTipoAtaque();
 	}
 }
