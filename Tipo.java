@@ -58,45 +58,48 @@ public class Tipo {
 		// tipo tal resiste al tipo tal
 		resistencias.put(Tipos.Fuego, new ArrayList<>());
 		resistencias.get(Tipos.Fuego).add(Tipos.Fuego);
-		resistencias.get(Tipos.Fuego).add(Tipos.Agua);
-		resistencias.get(Tipos.Fuego).add(Tipos.Dragon);
-
+		resistencias.get(Tipos.Fuego).add(Tipos.Acero);
+		resistencias.get(Tipos.Fuego).add(Tipos.Planta);
+		resistencias.get(Tipos.Fuego).add(Tipos.Hada);
+		
+		
 		resistencias.put(Tipos.Agua, new ArrayList<>());
 		resistencias.get(Tipos.Agua).add(Tipos.Agua);
-		resistencias.get(Tipos.Agua).add(Tipos.Planta);
-		resistencias.get(Tipos.Agua).add(Tipos.Dragon);
-
+		resistencias.get(Tipos.Agua).add(Tipos.Fuego);
+		resistencias.get(Tipos.Agua).add(Tipos.Acero);
+		
+		
 		resistencias.put(Tipos.Planta, new ArrayList<>());
-		resistencias.get(Tipos.Planta).add(Tipos.Fuego);
+		resistencias.get(Tipos.Planta).add(Tipos.Agua);
 		resistencias.get(Tipos.Planta).add(Tipos.Planta);
-		resistencias.get(Tipos.Planta).add(Tipos.Volador);
-		resistencias.get(Tipos.Planta).add(Tipos.Acero);
-		resistencias.get(Tipos.Planta).add(Tipos.Dragon);
+		resistencias.get(Tipos.Planta).add(Tipos.Electrico);
+		resistencias.get(Tipos.Planta).add(Tipos.Tierra);
+		
 
 		resistencias.put(Tipos.Electrico, new ArrayList<>());
-		resistencias.get(Tipos.Electrico).add(Tipos.Planta);
 		resistencias.get(Tipos.Electrico).add(Tipos.Electrico);
-		resistencias.get(Tipos.Electrico).add(Tipos.Dragon);
-
-		resistencias.put(Tipos.Tierra, new ArrayList<>());
-		resistencias.get(Tipos.Tierra).add(Tipos.Planta);
+		resistencias.get(Tipos.Electrico).add(Tipos.Volador);
+		resistencias.get(Tipos.Electrico).add(Tipos.Acero);
+		
 
 		resistencias.put(Tipos.Volador, new ArrayList<>());
-		resistencias.get(Tipos.Volador).add(Tipos.Electrico);
-		resistencias.get(Tipos.Volador).add(Tipos.Acero);
+		resistencias.get(Tipos.Volador).add(Tipos.Planta);
+		
 
 		resistencias.put(Tipos.Acero, new ArrayList<>());
-		resistencias.get(Tipos.Acero).add(Tipos.Fuego);
-		resistencias.get(Tipos.Acero).add(Tipos.Agua);
-		resistencias.get(Tipos.Acero).add(Tipos.Electrico);
+		resistencias.get(Tipos.Acero).add(Tipos.Planta);
+		resistencias.get(Tipos.Acero).add(Tipos.Volador);
 		resistencias.get(Tipos.Acero).add(Tipos.Acero);
+		resistencias.get(Tipos.Acero).add(Tipos.Hada);
+		resistencias.get(Tipos.Acero).add(Tipos.Dragon);
 
-		resistencias.put(Tipos.Hada, new ArrayList<>());
-		resistencias.get(Tipos.Hada).add(Tipos.Fuego);
-		resistencias.get(Tipos.Hada).add(Tipos.Acero);
+		
 
 		resistencias.put(Tipos.Dragon, new ArrayList<>());
-		resistencias.get(Tipos.Dragon).add(Tipos.Hada);
+		resistencias.get(Tipos.Dragon).add(Tipos.Fuego);
+		resistencias.get(Tipos.Dragon).add(Tipos.Agua);
+		resistencias.get(Tipos.Dragon).add(Tipos.Planta);
+		resistencias.get(Tipos.Dragon).add(Tipos.Electrico);
 
 		// tipo tal imnune a tipo tal
 		inmunidades.put(Tipos.Tierra, new ArrayList<>());
