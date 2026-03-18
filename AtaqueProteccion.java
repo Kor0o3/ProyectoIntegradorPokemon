@@ -12,18 +12,16 @@ public class AtaqueProteccion extends AtaquesEstado {
 		@Override
 		public void utilizar(Pokemon pAtacante, Pokemon pEnemigo) {
 			
-			int precision = 100;
-			int precisionred = precision/2;
-			
-			
 			if(tienePps()) {
 				ppActual--;
 				if(acierta()) {
-					System.out.println(pAtacante.validarNombre() + "ha usado " + getNombre());
-					System.out.println("La precision de " + pAtacante.validarNombre() + " es de " + precisionred);
+					System.out.println(pAtacante.validarNombre() + " se esta protegiendo con " + getNombre());
+					pAtacante.setProtegido(true);
 					contador++;
 				} else {
 					System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre() + " pero falló...");
+					pAtacante.setProtegido(false);
+					contador = 0;
 					
 				}
 			}
