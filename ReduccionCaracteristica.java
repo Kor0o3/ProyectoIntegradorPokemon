@@ -7,9 +7,9 @@ public class ReduccionCaracteristica extends AtaquesEstado{
 	private List<String> caracteristicas;
 	private int cantidad;
 	
-	public ReduccionCaracteristica(String nombre, String tipo, int precision, int pp, boolean prioridad,
+	public ReduccionCaracteristica(String nombre, String categoria, int precision, int pp, boolean prioridad,
 			int cantidad, List<String> caracteristicas, Tipo.Tipos tipoAtaque) {
-		super(nombre, tipo, precision, pp, prioridad, tipoAtaque);
+		super(nombre, categoria, precision, pp, prioridad, tipoAtaque);
 		this.cantidad = cantidad;
 		this.caracteristicas = new ArrayList<>();
 		
