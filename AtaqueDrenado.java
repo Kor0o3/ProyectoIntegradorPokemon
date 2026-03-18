@@ -4,8 +4,8 @@ public class AtaqueDrenado extends AtaqueTipo {
 	protected int curacion;
 
 	public AtaqueDrenado(String nombre, String tipo, int curacion, int potencia, int precision, int pp,
-			boolean prioridad) {
-		super(nombre, tipo, potencia, precision, pp, prioridad);
+			boolean prioridad,Tipo.Tipos tipoAtaque) {
+		super(nombre, tipo, potencia, precision, pp, prioridad,tipoAtaque);
 		this.curacion = curacion;
 	}
 

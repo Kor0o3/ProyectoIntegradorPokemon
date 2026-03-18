@@ -13,11 +13,13 @@ public abstract class Ataque {
 	protected boolean prioridad;
 	protected int rng = (int) (Math.random() * 100);
 	protected static double probCrit = 0.05;
-	
+	protected Tipo.Tipos tipoAtaque;
+	//he añadido el atributo para el tipo del ataque y usarlo en el constructor
 	// Constructor
-	public Ataque(String nombre, String tipo, int potencia, int precision, int pp, boolean prioridad) {
+	public Ataque(String nombre, String tipo, int potencia, int precision, int pp, boolean prioridad ,Tipo.Tipos tipoAtaque) {
 		if (tipo.equalsIgnoreCase("fisico") || tipo.equalsIgnoreCase("especial") || tipo.equalsIgnoreCase("estado")) {
 			this.tipo = tipo;
+			this.tipoAtaque = tipoAtaque;
 			if (potencia < 0) {
 				this.potencia = 1;
 			} else if (potencia > 150) {
@@ -72,7 +74,11 @@ public abstract class Ataque {
 	public String getTipo() {
 		return this.tipo;
 	}
-
+	
+	public Tipo.Tipos getTipoAtaque() {
+	    return tipoAtaque;
+	}
+	
 	protected boolean getPrioridad() {
 		return this.prioridad;
 	}

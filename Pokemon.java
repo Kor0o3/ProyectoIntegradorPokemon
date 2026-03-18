@@ -21,7 +21,10 @@ public class Pokemon {
 	protected int nivAtE = 0;
 	protected int nivDefE = 0;
 	protected int nivVel = 0;
-
+	
+	protected Tipo.Tipos tipo1;
+	protected Tipo.Tipos tipo2;
+	
 	// (AtF, DfF, AtF, DfE, V)
 	private int[] caracteristicasBase;
 
@@ -29,21 +32,21 @@ public class Pokemon {
 
 	// Constructores
 	public Pokemon(String nombrePokemon) {
-		this(nombrePokemon, null, 0, 0, 0, 0, 0, 0);
+		this(nombrePokemon, null, 0, 0, 0, 0, 0, 0, null, null);
 	}
 
 	public Pokemon(String nombrePokemon, String mote) {
-		this(nombrePokemon, mote, 0, 0, 0, 0, 0, 0);
+		this(nombrePokemon, mote, 0, 0, 0, 0, 0, 0, null, null);
 	}
 
 	public Pokemon(String nombrePokemon, int velocidad, int ataqueFisico, int defensaFisico, int ataqueEspecial,
-			int defensaEspecial, int puntosVidaMaximo) {
+			int defensaEspecial, int puntosVidaMaximo,Tipo.Tipos tipo1, Tipo.Tipos tipo2) {
 		this(nombrePokemon, null, velocidad, ataqueFisico, defensaFisico, ataqueEspecial, defensaEspecial,
-				puntosVidaMaximo);
+				puntosVidaMaximo, tipo1, tipo2);
 	}
 
 	public Pokemon(String nombrePokemon, String mote, int velocidad, int ataqueFisico, int defensaFisico,
-			int ataqueEspecial, int defensaEspecial, int puntosVidaMaximo) {
+			int ataqueEspecial, int defensaEspecial, int puntosVidaMaximo,Tipo.Tipos tipo1,Tipo.Tipos tipo2) {
 
 		this.nombrePokemon = nombrePokemon;
 		this.mote = mote;
@@ -55,6 +58,8 @@ public class Pokemon {
 		this.puntosVidaMaximo = puntosVidaMaximo;
 		this.puntosVidaActuales = puntosVidaMaximo;
 		this.movimientos = new ArrayList<>();
+		this.tipo1 = tipo1;
+		this.tipo2 = tipo2;
 
 		this.caracteristicasBase = new int[] {this.ataqueFisico,this.defensaFisico,this.ataqueEspecial,this.defensaEspecial, this.velocidad};
 		
@@ -307,4 +312,19 @@ public class Pokemon {
 		}
 		return false;
 	}
+	
+	public Tipo.Tipos getTipo1() {
+		return tipo1; 
+		}
+	
+	public Tipo.Tipos getTipo2() {
+		return tipo2; 
+		}
+	public void  setTipo1(Tipo.Tipos tipo1) {
+		this.tipo1 = tipo1;
+		}
+	
+	public void  setTipo2( Tipo.Tipos tipo2) {
+		this.tipo2 = tipo2;
+		}
 }

@@ -3,8 +3,8 @@ package ProyectoIntegradorPokemon;
 public class AtaqueRetroceso extends AtaqueTipo {
 	
 
-	public AtaqueRetroceso(String nombre, String tipo, int potencia, int precision, int pp, boolean prioridad) { 
-		super(nombre, tipo, potencia, precision, pp, prioridad);
+	public AtaqueRetroceso(String nombre, String tipo, int potencia, int precision, int pp, boolean prioridad,Tipo.Tipos tipoAtaque) { 
+		super(nombre, tipo, potencia, precision, pp, prioridad,tipoAtaque);
 		// TODO Auto-generated constructor stub
 	}
 	public void utilizar(Pokemon pAtacante, Pokemon pEnemigo) {

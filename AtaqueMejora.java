@@ -5,8 +5,8 @@ public class AtaqueMejora extends AtaqueOfensivos {
 	private int cantidad;
 
 	public AtaqueMejora(String nombre, String tipo, String caracteristica, int cantidad, int potencia, int precision,
-			int pp, boolean prioridad) {
-		super(nombre, tipo, potencia, precision, pp, prioridad);
+			int pp, boolean prioridad,Tipo.Tipos tipoAtaque) {
+		super(nombre, tipo, potencia, precision, pp, prioridad, tipoAtaque);
 		this.caracteristica = caracteristica;
 		this.cantidad = cantidad;
 	}

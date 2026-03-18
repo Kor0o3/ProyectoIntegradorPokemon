@@ -6,8 +6,8 @@ public class AtaqueReduccion extends AtaqueOfensivos {
 	private Pokemon pAReducir;
 
 	public AtaqueReduccion(String nombre, String tipo, String caracteristica, int cantidad, Pokemon pAReducir,
-			int potencia, int precision, int pp, boolean prioridad) {
-		super(nombre, tipo, potencia, precision, pp, prioridad);
+			int potencia, int precision, int pp, boolean prioridad ,Tipo.Tipos tipoAtaque) {
+		super(nombre, tipo, potencia, precision, pp, prioridad,tipoAtaque);
 		this.caracteristica = caracteristica;
 		this.cantidad = cantidad;
 		this.pAReducir = pAReducir;
