@@ -101,7 +101,13 @@ public abstract class Ataque {
 
 	@Override
 	public String toString() {
+		String prioridad = null;
+		if (getPrioridad() != false) {
+			prioridad = "si";
+		} else {
+			prioridad = "no";
+		}
 		return getNombre() + " | Categoria: " + getCategoria() + " - Potencia: " + getPotencia() + " - Precision: "
-				+ getPrecision() + " - PP: " + getPpActual() + "/" + getPp() + " - Prioridad: " + getPrioridad() + " - Tipo: "+ getTipoAtaque();
+				+ getPrecision() + " - PP: " + getPpActual() + "/" + getPp() + " - Prioridad: " + prioridad + " - Tipo: "+ getTipoAtaque();
 	}
 }

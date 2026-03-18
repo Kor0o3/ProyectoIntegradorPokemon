@@ -25,6 +25,7 @@ public class combatePractica {
 		//pokemon2.agregarAtaque(new AtaqueMejora("Puño incrimento", "fisico", "AtF", 1, 40, 100, 20, false));
 		pokemon2.agregarAtaque(new AtaqueCategoria("Ascuas", "especial", 40, 951, 25, true, Tipos.Fuego));
 		pokemon2.agregarAtaque(new AtaqueDrenado("Gigadrenado", "fisico", 2, 75, 100, 10, false, null));
+		pokemon2.agregarAtaque(new AtaqueProteccion("Proteccion", "Estado", 100, 15, true, null));
 		//pokemon2.agregarAtaque(new AtaqueRecuperacion("Recuperacion", "estado", 100, 10, false));
 		
 		
