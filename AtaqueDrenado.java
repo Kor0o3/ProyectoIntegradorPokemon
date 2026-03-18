@@ -1,6 +1,6 @@
 package ProyectoIntegradorPokemon;
 
-public class AtaqueDrenado extends AtaqueTipo {
+public class AtaqueDrenado extends AtaqueCategoria {
 	protected int curacion;
 
 	public AtaqueDrenado(String nombre, String categoria, int curacion, int potencia, int precision, int pp,
