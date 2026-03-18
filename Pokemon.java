@@ -21,10 +21,10 @@ public class Pokemon {
 	protected int nivAtE = 0;
 	protected int nivDefE = 0;
 	protected int nivVel = 0;
-	
+
 	protected Tipo.Tipos tipo1;
 	protected Tipo.Tipos tipo2;
-	
+
 	// (AtF, DfF, AtF, DfE, V)
 	private int[] caracteristicasBase;
 
@@ -40,13 +40,13 @@ public class Pokemon {
 	}
 
 	public Pokemon(String nombrePokemon, int velocidad, int ataqueFisico, int defensaFisico, int ataqueEspecial,
-			int defensaEspecial, int puntosVidaMaximo,Tipo.Tipos tipo1, Tipo.Tipos tipo2) {
+			int defensaEspecial, int puntosVidaMaximo, Tipo.Tipos tipo1, Tipo.Tipos tipo2) {
 		this(nombrePokemon, null, velocidad, ataqueFisico, defensaFisico, ataqueEspecial, defensaEspecial,
 				puntosVidaMaximo, tipo1, tipo2);
 	}
 
 	public Pokemon(String nombrePokemon, String mote, int velocidad, int ataqueFisico, int defensaFisico,
-			int ataqueEspecial, int defensaEspecial, int puntosVidaMaximo,Tipo.Tipos tipo1,Tipo.Tipos tipo2) {
+			int ataqueEspecial, int defensaEspecial, int puntosVidaMaximo, Tipo.Tipos tipo1, Tipo.Tipos tipo2) {
 
 		this.nombrePokemon = nombrePokemon;
 		this.mote = mote;
@@ -61,8 +61,9 @@ public class Pokemon {
 		this.tipo1 = tipo1;
 		this.tipo2 = tipo2;
 
-		this.caracteristicasBase = new int[] {this.ataqueFisico,this.defensaFisico,this.ataqueEspecial,this.defensaEspecial, this.velocidad};
-		
+		this.caracteristicasBase = new int[] { this.ataqueFisico, this.defensaFisico, this.ataqueEspecial,
+				this.defensaEspecial, this.velocidad };
+
 		int totalPoder = velocidad + ataqueFisico + defensaFisico + ataqueEspecial + defensaEspecial + puntosVidaMaximo;
 
 		if (ataqueFisico <= 0 || defensaFisico <= 0 || ataqueEspecial <= 0 || defensaEspecial <= 0 || velocidad <= 0
@@ -251,18 +252,33 @@ public class Pokemon {
 			color = GREEN;
 		}
 
-		System.out.println("——————————————————————————————————");
-		System.out.println(validarNombre());
-		System.out.print(this.puntosVidaActuales + "/" + this.puntosVidaMaximo + " ");
-		System.out.print(" |");
-		for (int i = 0; i < cantidad; i++) {
-			System.out.print(color + "■" + ANSI_RESET);
+		if (this.getTipo1() != null && this.getTipo2() != null) {
+			System.out.println("——————————————————————————————————");
+			System.out.println(validarNombre() + " - " + this.getTipo1()+ " "+this.getTipo2());
+			System.out.print(this.puntosVidaActuales + "/" + this.puntosVidaMaximo + " ");
+			System.out.print(" |");
+			for (int i = 0; i < cantidad; i++) {
+				System.out.print(color + "■" + ANSI_RESET);
+			}
+			for (int g = 0; g < 20 - cantidad; g++) {
+				System.out.print("⬚");
+			}
+			System.out.println("|");
+			System.out.println("——————————————————————————————————");
+		} else {
+			System.out.println("——————————————————————————————————");
+			System.out.println(validarNombre() + " - " + this.getTipo1());
+			System.out.print(this.puntosVidaActuales + "/" + this.puntosVidaMaximo + " ");
+			System.out.print(" |");
+			for (int i = 0; i < cantidad; i++) {
+				System.out.print(color + "■" + ANSI_RESET);
+			}
+			for (int g = 0; g < 20 - cantidad; g++) {
+				System.out.print("⬚");
+			}
+			System.out.println("|");
+			System.out.println("——————————————————————————————————");
 		}
-		for (int g = 0; g < 20 - cantidad; g++) {
-			System.out.print("⬚");
-		}
-		System.out.println("|");
-		System.out.println("——————————————————————————————————");
 	}
 
 	// todo esto es lo nuevo de ataques {
@@ -312,19 +328,20 @@ public class Pokemon {
 		}
 		return false;
 	}
-	
+
 	public Tipo.Tipos getTipo1() {
-		return tipo1; 
-		}
-	
+		return tipo1;
+	}
+
 	public Tipo.Tipos getTipo2() {
-		return tipo2; 
-		}
-	public void  setTipo1(Tipo.Tipos tipo1) {
+		return tipo2;
+	}
+
+	public void setTipo1(Tipo.Tipos tipo1) {
 		this.tipo1 = tipo1;
-		}
-	
-	public void  setTipo2( Tipo.Tipos tipo2) {
+	}
+
+	public void setTipo2(Tipo.Tipos tipo2) {
 		this.tipo2 = tipo2;
-		}
+	}
 }
