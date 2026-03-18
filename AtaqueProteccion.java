@@ -2,6 +2,8 @@ package ProyectoIntegradorPokemon;
 
 public class AtaqueProteccion extends AtaquesEstado {
 
+		static int contador = 0;
+	
 		public AtaqueProteccion(String nombre, String tipo, int precision, int pp, boolean prioridad) {
 			super(nombre, tipo, precision, pp, prioridad);
 			// TODO Auto-generated constructor stub
@@ -12,19 +14,20 @@ public class AtaqueProteccion extends AtaquesEstado {
 
 			int puntosDefensa = pAtacante.getDefensaFisica();
 			
-			if (tienePps()) {
+			if(tienePps()) {
 				ppActual--;
-				if (acierta()) {
-					pAtacante.setDefensaFisica(+puntosDefensa);
-					System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre());
+				if(acierta()) {
 					pAtacante.getDefensaFisica();
-					System.out.println(pAtacante.validarNombre() + "Su defensa a subido" + pAtacante.getDefensaFisica());
-				} else {
-					System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre() + " pero falló...");
+					System.out.println(pAtacante.validarNombre() + "uso" + getNombre());
+					pAtacante.setDefensaFisica(+puntosDefensa);
+					contador++;
+					System.out.println("La defensa de" + pAtacante.validarNombre() + "subio");
+					
+					
 				}
-			} else {
-				System.out.println(getNombre() + " no tiene PP");
+				
 			}
+			
+			
 		}
-
 	}
