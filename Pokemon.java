@@ -1,4 +1,4 @@
-package Programa;
+package ProyectoIntegradorPokemon;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,25 +14,40 @@ public class Pokemon {
 	protected int velocidad;
 	protected int puntosVidaActuales;
 	protected int puntosVidaMaximo;
-	public List<String> movimientos;
+	protected int poderMaximo = 600;
+	protected boolean protegido = false;	// Realizado por Adrian para hacer el AtaqueProteccion
+
+	protected int nivAtF = 0;
+	protected int nivDefF = 0;
+	protected int nivAtE = 0;
+	protected int nivDefE = 0;
+	protected int nivVel = 0;
+	
+	protected Tipo.Tipos tipo1;
+	protected Tipo.Tipos tipo2;
+	
+	// (AtF, DfF, AtF, DfE, V)
+	private int[] caracteristicasBase;
+
+	public List<Ataque> movimientos;
 
 	// Constructores
 	public Pokemon(String nombrePokemon) {
-		this(nombrePokemon, null, 0, 0, 0, 0, 0, 0);
+		this(nombrePokemon, null, 0, 0, 0, 0, 0, 0, null, null);
 	}
 
 	public Pokemon(String nombrePokemon, String mote) {
-		this(nombrePokemon, mote, 0, 0, 0, 0, 0, 0);
+		this(nombrePokemon, mote, 0, 0, 0, 0, 0, 0, null, null);
 	}
 
 	public Pokemon(String nombrePokemon, int velocidad, int ataqueFisico, int defensaFisico, int ataqueEspecial,
-			int defensaEspecial, int puntosVidaMaximo) {
+			int defensaEspecial, int puntosVidaMaximo,Tipo.Tipos tipo1, Tipo.Tipos tipo2) {
 		this(nombrePokemon, null, velocidad, ataqueFisico, defensaFisico, ataqueEspecial, defensaEspecial,
-				puntosVidaMaximo);
+				puntosVidaMaximo, tipo1, tipo2);
 	}
 
 	public Pokemon(String nombrePokemon, String mote, int velocidad, int ataqueFisico, int defensaFisico,
-			int ataqueEspecial, int defensaEspecial, int puntosVidaMaximo) {
+			int ataqueEspecial, int defensaEspecial, int puntosVidaMaximo,Tipo.Tipos tipo1,Tipo.Tipos tipo2) {
 
 		this.nombrePokemon = nombrePokemon;
 		this.mote = mote;
@@ -44,7 +59,11 @@ public class Pokemon {
 		this.puntosVidaMaximo = puntosVidaMaximo;
 		this.puntosVidaActuales = puntosVidaMaximo;
 		this.movimientos = new ArrayList<>();
+		this.tipo1 = tipo1;
+		this.tipo2 = tipo2;
 
+		this.caracteristicasBase = new int[] {this.ataqueFisico,this.defensaFisico,this.ataqueEspecial,this.defensaEspecial, this.velocidad};
+		
 		int totalPoder = velocidad + ataqueFisico + defensaFisico + ataqueEspecial + defensaEspecial + puntosVidaMaximo;
 
 		if (ataqueFisico <= 0 || defensaFisico <= 0 || ataqueEspecial <= 0 || defensaEspecial <= 0 || velocidad <= 0
@@ -53,8 +72,7 @@ public class Pokemon {
 					validarNombre() + " no puede participar en batallas hasta que sus atributos no sean cambiados");
 		}
 
-		if (totalPoder > 600) {
-			System.out.println("El poder de " + validarNombre() + " no puede superar 600");
+		if (totalPoder > this.poderMaximo) {
 			this.ataqueFisico = 0;
 			this.defensaFisico = 0;
 			this.puntosVidaMaximo = 0;
@@ -64,16 +82,8 @@ public class Pokemon {
 	}
 
 	// Getter y Setter
-	public String getNombrePokemon() {
-		return nombrePokemon;
-	}
-
 	public void setNombrePokemon(String nombrePokemon) {
 		this.nombrePokemon = nombrePokemon;
-	}
-
-	public String getMote() {
-		return mote;
 	}
 
 	public void setMote(String mote) {
@@ -167,7 +177,59 @@ public class Pokemon {
 		}
 	}
 
+	public int getNivAtF() {
+		return nivAtF;
+	}
+
+	public void setNivAtF(int nivAtF) {
+		this.nivAtF = nivAtF;
+	}
+
+	public int getNivDefF() {
+		return nivDefF;
+	}
+
+	public void setNivDefF(int nivDefF) {
+		this.nivDefF = nivDefF;
+	}
+
+	public int getNivAtE() {
+		return nivAtE;
+	}
+
+	public void setNivAtE(int nivAtE) {
+		this.nivAtE = nivAtE;
+	}
+
+	public int getNivDefE() {
+		return nivDefE;
+	}
+
+	public void setNivDefE(int nivDefE) {
+		this.nivDefE = nivDefE;
+	}
+
+	public int getNivVel() {
+		return nivVel;
+	}
+
+	public void setNivVel(int nivVel) {
+		this.nivVel = nivVel;
+	}
+
+	public int getCaracteristicaBase(int i) {
+		return caracteristicasBase[i];
+	}
+
 	// Métodos
+	public String validarNombre() {
+		if (this.mote != null) {
+			return this.mote;
+		} else {
+			return this.nombrePokemon;
+		}
+	}
+
 	public void reducirPuntosDeVida(int v) {
 		this.puntosVidaActuales = this.puntosVidaActuales - v;
 		if (this.puntosVidaActuales <= 0) {
@@ -175,42 +237,39 @@ public class Pokemon {
 		}
 	}
 
-	public void atacar(Pokemon enemigo, int opcion) {
-		opcion = opcion - 1;
+	public void mostrarEstadoDelPokemon() { // Hecho por fran
+		String RED = "\u001B[31m", GREEN = "\u001B[32m", YELLOW = "\u001B[33m", ANSI_RESET = "\u001B[0m", color = null;
+		int porcentaje = (this.puntosVidaActuales * 100) / this.puntosVidaMaximo;
+		int cantidad = (this.puntosVidaActuales * 20) / this.puntosVidaMaximo;
 
-		if (opcion == 0) {
-			int danioFisico = this.ataqueFisico - enemigo.defensaFisico;
-			System.out.println(validarNombre() + " usa " + movimientos.get(opcion));
-			if (danioFisico <= 0) {
-				danioFisico = 1;
-			}
-			enemigo.reducirPuntosDeVida(danioFisico);
-
+		if (porcentaje == 100) {
+			color = GREEN;
+		} else if (porcentaje < 25) {
+			color = RED;
+		} else if (porcentaje < 50) {
+			color = YELLOW;
 		} else {
-			int danioEspecial = this.ataqueEspecial - enemigo.defensaEspecial;
-			System.out.println(validarNombre() + " usa " + movimientos.get(opcion));
-			if (danioEspecial <= 0) {
-				danioEspecial = 1;
-			}
-			enemigo.reducirPuntosDeVida(danioEspecial);
+			color = GREEN;
 		}
 
-	}
-
-	public void mostrarEstadoDelPokemon() { // Hecho por fran
+		System.out.println("——————————————————————————————————");
 		System.out.println(validarNombre());
 		System.out.print(this.puntosVidaActuales + "/" + this.puntosVidaMaximo + " ");
-
-		int cantidad = (this.puntosVidaActuales * 20) / this.puntosVidaMaximo;
 		System.out.print(" |");
 		for (int i = 0; i < cantidad; i++) {
-			System.out.print('-');
+			System.out.print(color + "■" + ANSI_RESET);
 		}
 		for (int g = 0; g < 20 - cantidad; g++) {
-			System.out.print(" ");
+			System.out.print("⬚");
 		}
-		System.out.println('|');
-		System.out.println();
+		System.out.println("|");
+		System.out.println("——————————————————————————————————");
+	}
+
+	// todo esto es lo nuevo de ataques {
+	public void atacar(Pokemon enemigo, int opcion) {
+		Ataque ataque = movimientos.get(opcion - 1);
+		ataque.utilizar(this, enemigo);
 	}
 
 	public void mostrarAtaques() {
@@ -220,25 +279,62 @@ public class Pokemon {
 		}
 	}
 
+	public void agregarAtaque(Ataque ataque) {
+		boolean agregado = false;
+		if (movimientos.size() < 4 && ataque.getCategoria() != null) {
+			movimientos.add(ataque);
+			agregado = true;
+		}
+
+		if (!agregado && ataque.getCategoria() != null) {
+			System.out.println(ataque.getNombre() + " no se añadira, " + this.validarNombre()
+					+ " no puede tener mas de 4 ataques");
+		}
+	}
+
+	public boolean AtacaConPrioridad(int opcion) {
+		return movimientos.get(opcion - 1).getPrioridad();
+	}
+
+	public boolean puedesUsarAtaque(int opcion) {
+		return movimientos.get(opcion - 1).tienePps();
+	}
+	// } No toqueis ningun metodo de estos deberian funcionar sino avisar
+
 	public boolean esValidoParaCombate() { // Hecho por Raúl: valida un pokemon antes de un combate
 		int poderTotal = this.velocidad + this.ataqueFisico + this.defensaFisico + this.ataqueEspecial
 				+ this.defensaEspecial + this.puntosVidaMaximo;
 
 		if (velocidad > 0 && ataqueFisico > 0 && defensaFisico > 0 && ataqueEspecial > 0 && defensaEspecial > 0
-				&& puntosVidaMaximo > 0 && poderTotal <= 600) {
+				&& puntosVidaMaximo > 0 && poderTotal <= this.poderMaximo) {
 			return true;
-		} else if (ataqueFisico > 0 && defensaFisico > 0 && puntosVidaMaximo > 0) {
-			System.out.println("El poder de " + validarNombre() + " no puede superar 600");
+		} else {
+			System.out.println("El poder de " + validarNombre() + " no puede superar " + this.poderMaximo);
 		}
 		return false;
 	}
-
-	public String validarNombre() { // Hecho por Raúl: resumen el codigo para no tener que repetir tanta veces el
-									// mismo if de comprobar nombre o mote
-		if (this.mote != null) {
-			return this.mote;
-		} else {
-			return this.nombrePokemon;
+	
+	public Tipo.Tipos getTipo1() {
+		return tipo1; 
 		}
+	
+	public Tipo.Tipos getTipo2() {
+		return tipo2; 
+		}
+	public void  setTipo1(Tipo.Tipos tipo1) {
+		this.tipo1 = tipo1;
+		}
+	
+	public void  setTipo2( Tipo.Tipos tipo2) {
+		this.tipo2 = tipo2;
+		}
+
+	public void setProtegido(boolean protegido) { // Realizado por Adrian para hacer el AtaqueProteccion
+		this.protegido = protegido;
+		
+	}
+	
+	public boolean estaProtegido() { // Realizado por Adrian para hacer el AtaqueProteccion
+		return protegido;
 	}
 }
