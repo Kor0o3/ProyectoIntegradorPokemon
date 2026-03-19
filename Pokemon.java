@@ -15,7 +15,8 @@ public class Pokemon {
 	protected int puntosVidaActuales;
 	protected int puntosVidaMaximo;
 	protected int poderMaximo = 600;
-
+	protected boolean protegido = false;
+	
 	protected int nivAtF = 0;
 	protected int nivDefF = 0;
 	protected int nivAtE = 0;
@@ -284,7 +285,17 @@ public class Pokemon {
 	// todo esto es lo nuevo de ataques {
 	public void atacar(Pokemon enemigo, int opcion) {
 		Ataque ataque = movimientos.get(opcion - 1);
-		ataque.utilizar(this, enemigo);
+		boolean prot = false; // añadido por Raul {
+		
+		if (enemigo.estaProtegido()) { // añadido por Raul
+				System.out.println(this.validarNombre() + " usó " + this.ataqueUsado(opcion) + " pero " + enemigo.validarNombre() + " se protegió!");
+		        prot = true;
+		}
+		enemigo.setProtegido(false);
+		
+		if (!prot){ // añadido por raul	
+			ataque.utilizar(this, enemigo);
+		}
 	}
 
 	public void mostrarAtaques() {
@@ -314,20 +325,15 @@ public class Pokemon {
 	public boolean puedesUsarAtaque(int opcion) {
 		return movimientos.get(opcion - 1).tienePps();
 	}
-	// } No toqueis ningun metodo de estos deberian funcionar sino avisar
-
-	public boolean esValidoParaCombate() { // Hecho por Raúl: valida un pokemon antes de un combate
-		int poderTotal = this.velocidad + this.ataqueFisico + this.defensaFisico + this.ataqueEspecial
-				+ this.defensaEspecial + this.puntosVidaMaximo;
-
-		if (velocidad > 0 && ataqueFisico > 0 && defensaFisico > 0 && ataqueEspecial > 0 && defensaEspecial > 0
-				&& puntosVidaMaximo > 0 && poderTotal <= this.poderMaximo) {
-			return true;
-		} else {
-			System.out.println("El poder de " + validarNombre() + " no puede superar " + this.poderMaximo);
-		}
-		return false;
+	
+	// Añadido para mostrar el ataque en protegido no usar en otra ocasion a no ser que se requiera claro // hecho por Raul
+	private String ataqueUsado(int pos) {
+		int cantidad = this.movimientos.get(pos - 1).getPpActual();
+		this.movimientos.get(pos - 1).setPpActual(cantidad - 1);;
+		return this.movimientos.get(pos - 1).nombre;
 	}
+	
+	// } No toqueis ningun metodo de estos deberian funcionar sino avisar
 
 	public Tipo.Tipos getTipo1() {
 		return tipo1;
@@ -343,5 +349,26 @@ public class Pokemon {
 
 	public void setTipo2(Tipo.Tipos tipo2) {
 		this.tipo2 = tipo2;
+	}
+	
+	public void setProtegido(boolean protegido) { // Realizado por Adrian para hacer el AtaqueProteccion
+		this.protegido = protegido;
+	}
+	
+	public boolean estaProtegido() { // Realizado por Adrian para hacer el AtaqueProteccion
+		return protegido;
+	}
+
+	public boolean esValidoParaCombate() { // Hecho por Raúl: valida un pokemon antes de un combate
+		int poderTotal = this.velocidad + this.ataqueFisico + this.defensaFisico + this.ataqueEspecial
+				+ this.defensaEspecial + this.puntosVidaMaximo;
+
+		if (velocidad > 0 && ataqueFisico > 0 && defensaFisico > 0 && ataqueEspecial > 0 && defensaEspecial > 0
+				&& puntosVidaMaximo > 0 && poderTotal <= this.poderMaximo) {
+			return true;
+		} else {
+			System.out.println("El poder de " + validarNombre() + " no puede superar " + this.poderMaximo);
+		}
+		return false;
 	}
 }

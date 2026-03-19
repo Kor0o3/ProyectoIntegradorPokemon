@@ -19,6 +19,29 @@ public class AtaqueRetroceso extends AtaqueCategoria {
 					danio = calcularDanio(pAtacante.getAtaqueEspecial(), pEnemigo.getDefensaEspecial());
 				}
 				
+				if (esCritico()) {
+					System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre() + ". Golpe critico!");
+				} else {
+					System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre());
+				}
+				
+				Tipo tabla = new Tipo();
+				double mult = tabla.getMultiplicadorTotal(this.getTipoAtaque(), pAtacante, pEnemigo.getTipo1(), pEnemigo.getTipo2());
+				danio = (int)(danio * mult);
+				
+				if (mult == 0) {
+					System.out.println("¡No afecta a " + pEnemigo.validarNombre() + "!");
+				}
+				else if (mult >= 2) {
+					System.out.println("¡Es muy eficaz!");
+				}
+				else if (mult <= 0.5) {
+					System.out.println("No es eficaz");
+				}
+				else {
+					System.out.println("El ataque es neutro");
+				}
+				
 				if(rng>25) {
 						pAtacante.reducirPuntosDeVida(pAtacante.puntosVidaActuales/2);
 						System.out.println("La salud de "+pAtacante.nombrePokemon+" se ha reducido por su ataque con retroceso!");
@@ -33,11 +56,6 @@ public class AtaqueRetroceso extends AtaqueCategoria {
 					}
 				
 				pEnemigo.reducirPuntosDeVida(danio);
-				if (esCritico()) {
-					System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre() + ". Golpe critico!");
-				} else {
-					System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre());
-				}
 			} else {
 				System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre() + " pero falló...");
 			}

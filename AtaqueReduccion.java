@@ -26,10 +26,28 @@ public class AtaqueReduccion extends AtaqueOfensivos {
 					danio = calcularDanio(pAtacante.getAtaqueEspecial(), pEnemigo.getDefensaEspecial());
 				}
 				pEnemigo.reducirPuntosDeVida(danio);
+				
+				Tipo tabla = new Tipo();
+				double mult = tabla.getMultiplicadorTotal(this.getTipoAtaque(), pAtacante, pEnemigo.getTipo1(), pEnemigo.getTipo2());
+				danio = (int)(danio * mult);
+				
 				if (esCritico()) {
 					System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre() + ". Golpe critico!");
 				} else {
 					System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre());
+				}
+				
+				if (mult == 0) {
+					System.out.println("¡No afecta a " + pEnemigo.validarNombre() + "!");
+				}
+				else if (mult >= 2) {
+					System.out.println("¡Es muy eficaz!");
+				}
+				else if (mult <= 0.5) {
+					System.out.println("No es eficaz");
+				}
+				else {
+					System.out.println("El ataque es neutro");
 				}
 
 				reducirCaracteristica(this.pAReducir);

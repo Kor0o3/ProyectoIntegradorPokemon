@@ -1,31 +1,34 @@
 package ProyectoIntegradorPokemon;
 
 public class AtaqueProteccion extends AtaquesEstado {
-		// No funciona
 		static int contador = 0;
-	
-		public AtaqueProteccion(String nombre, String tipo, int precision, int pp, boolean prioridad,Tipo.Tipos tipoAtaque) {
+		private int tempPre;
+		
+		public AtaqueProteccion(String nombre, String tipo, int precision, int pp, boolean prioridad, Tipo.Tipos tipoAtaque) {
 			super(nombre, tipo, precision, pp, prioridad, tipoAtaque);
-			// TODO Auto-generated constructor stub
+			this.tempPre = precision;
 		}
 		
 		@Override
 		public void utilizar(Pokemon pAtacante, Pokemon pEnemigo) {
-			
-			int precision = 100;
-			int precisionred = precision/2;
-			
-			
 			if(tienePps()) {
 				ppActual--;
+				
+				if (contador == 0) { // añadido por raul
+					tempPre = this.precision;
+					setPrecision(tempPre);
+				}
+				
 				if(acierta()) {
-					System.out.println(pAtacante.validarNombre() + "ha usado " + getNombre());
-					System.out.println("La precision de " + pAtacante.validarNombre() + " es de " + precisionred);
-					contador++;
+					System.out.println(pAtacante.validarNombre() + " se esta protegiendo con " + getNombre());
+					pAtacante.setProtegido(true); 
 				} else {
 					System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre() + " pero falló...");
-					
+					pAtacante.setProtegido(false);
 				}
+				
+				tempPre = tempPre/2; // añadido por raul
+				contador++;
 			}
 				
 		}	

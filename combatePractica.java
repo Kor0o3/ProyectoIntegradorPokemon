@@ -11,23 +11,24 @@ public class combatePractica {
 		boolean pokemonDerrotado = false;
 		int masVeloz = 0, opcionP1 = 0, opcionP2 = 0, cont = 1;
 
-		Pokemon pokemon1 = new Pokemon("Pikachu", 45, 40, 20, 100, 10, 120, Tipos.Electrico,null);
+		Pokemon pokemon1 = new Pokemon("Pikachu", 45, 40, 20, 100, 10, 120, Tipos.Electrico, null);
 		pokemon1.agregarAtaque(new AtaqueCategoria("Ataque Rapido", "fisico", 30, 100, 15, true, Tipos.Electrico));
-		pokemon1.agregarAtaque(new AtaqueCategoria("Portazo", "fisico", 80, 75, 20, false,null));
+		pokemon1.agregarAtaque(new AtaqueCategoria("Portazo", "fisico", 80, 75, 20, false, null));
 		pokemon1.agregarAtaque(new AtaqueCategoria("Rayo", "especial", 90, 100, 15, false, null));
-		pokemon1.agregarAtaque(new AtaqueRetroceso("Placaje electrico", "fisico", 120, 100, 15, false, null));
-		
+		// pokemon1.agregarAtaque(new AtaqueRetroceso("Placaje electrico", "fisico", 120, 100, 15, false, null));
+		pokemon1.agregarAtaque(new AtaqueProteccion("Proteccion", "estado", 100, 10, true, Tipos.Hada));
+
 		Pokemon pokemon2 = new Pokemon("Charmander", "Clipper", 50, 45, 20, 30, 25, 120, Tipos.Fuego, Tipos.Volador);
-		pokemon2.agregarAtaque(new AtaqueReduccion("Viento Hielo", "especial","Vel",1,pokemon1,55,95,15,false, Tipos.Agua));
-		//pokemon2.agregarAtaque(new AtaqueReduccion("Rencor Reprimido", "especial", "AtF", 1, pokemon1, 75, 100, 5, false));
-		//pokemon2.agregarAtaque(new AtaqueReduccion("Arremetida", "fisico", "DefF", 1, pokemon2, 120, 100, 5, false));
-		//pokemon2.agregarAtaque(new AtaqueMejora("Nitrocarga", "fisico", "Vel", 1, 50, 100, 20, false));
-		//pokemon2.agregarAtaque(new AtaqueMejora("Puño incrimento", "fisico", "AtF", 1, 40, 100, 20, false));
+		pokemon2.agregarAtaque(new AtaqueReduccion("Viento Hielo", "especial", "Vel", 1, pokemon1, 55, 95, 15, false, Tipos.Agua));
+		// pokemon2.agregarAtaque(new AtaqueReduccion("Rencor Reprimido", "especial", "AtF", 1, pokemon1, 75, 100, 5, false));
+		// pokemon2.agregarAtaque(new AtaqueReduccion("Arremetida", "fisico", "DefF", 1, pokemon2, 120, 100, 5, false));
+		// pokemon2.agregarAtaque(new AtaqueMejora("Nitrocarga", "fisico", "Vel", 1, 50, 100, 20, false));
+		// pokemon2.agregarAtaque(new AtaqueMejora("Puño incrimento", "fisico", "AtF", 1, 40, 100, 20, false));
 		pokemon2.agregarAtaque(new AtaqueCategoria("Ascuas", "especial", 40, 951, 25, true, Tipos.Fuego));
 		pokemon2.agregarAtaque(new AtaqueDrenado("Gigadrenado", "fisico", 2, 75, 100, 10, false, null));
-		pokemon2.agregarAtaque(new AtaqueProteccion("Proteccion", "Estado", 100, 15, true, null));
-		//pokemon2.agregarAtaque(new AtaqueRecuperacion("Recuperacion", "estado", 100, 10, false));
-		
+		// pokemon2.agregarAtaque(new AtaqueProteccion("Proteccion", "Estado", 100, 15, true, null));
+		//pokemon2.agregarAtaque(new AtaqueRecuperacion("Recuperacion", "estado", 100, 10, false, Tipos.Planta));
+		pokemon2.agregarAtaque(new AtaqueProteccion("Proteccion", "estado", 100, 10, true, Tipos.Hada));
 		
 		if (pokemon1.esValidoParaCombate() && pokemon2.esValidoParaCombate()) {
 			mostrarPokemons(pokemon1, pokemon2);
@@ -65,11 +66,11 @@ public class combatePractica {
 						pokemonDerrotado = true;
 						System.out.println(pokemon2.validarNombre() + " ha sido derrotado");
 					} else if (!pokemonDerrotado && pokemon1.AtacaConPrioridad(opcionP1)) {
-						combatePokemon(pokemon1, pokemon2, opcionP1, opcionP2,tabla);
+						combatePokemon(pokemon1, pokemon2, opcionP1, opcionP2, tabla);
 					} else if (!pokemonDerrotado && pokemon2.AtacaConPrioridad(opcionP2)) {
-						combatePokemon(pokemon2, pokemon1, opcionP2, opcionP1,tabla);
+						combatePokemon(pokemon2, pokemon1, opcionP2, opcionP1, tabla);
 					} else if (!pokemonDerrotado) {
-						combatePokemon(pokemon1, pokemon2, opcionP1, opcionP2,tabla);
+						combatePokemon(pokemon1, pokemon2, opcionP1, opcionP2, tabla);
 					}
 				} else if (pokemon2.getVelocidad() > pokemon1.getVelocidad() || masVeloz == 2) {
 					// Pokemon2 ataca primero
@@ -103,32 +104,31 @@ public class combatePractica {
 						pokemonDerrotado = true;
 						System.out.println(pokemon2.validarNombre() + " ha sido derrotado");
 					} else if (!pokemonDerrotado && pokemon2.AtacaConPrioridad(opcionP2)) {
-						combatePokemon(pokemon2, pokemon1, opcionP2, opcionP1,tabla);
+						combatePokemon(pokemon2, pokemon1, opcionP2, opcionP1, tabla);
 					} else if (!pokemonDerrotado && pokemon1.AtacaConPrioridad(opcionP1)) {
-						combatePokemon(pokemon1, pokemon2, opcionP1, opcionP2,tabla);
+						combatePokemon(pokemon1, pokemon2, opcionP1, opcionP2, tabla);
 					} else if (!pokemonDerrotado) {
-						combatePokemon(pokemon2, pokemon1, opcionP2, opcionP1,tabla);
+						combatePokemon(pokemon2, pokemon1, opcionP2, opcionP1, tabla);
 					}
-				} else {// En caso de empate inicializamos masVeloz con un numero aleatorio que decida
-						// quien ataca primero
+				} else {// En caso de empate inicializamos masVeloz con un numero aleatorio que decida quien ataca primero
 					masVeloz = (int) (Math.random() * 2) + 1;
 					cont--;
 				}
 				cont++;
 			} while (!pokemonDerrotado);
-			
-			
+
 			sc.close();
 		}
 	}
 
 	// Metodos para optimizar un poco el main
 	public static void mostrarPokemons(Pokemon pokemon1, Pokemon pokemon2) {
+		System.out.println(AtaqueProteccion.contador);
 		pokemon1.mostrarEstadoDelPokemon();
 		pokemon2.mostrarEstadoDelPokemon();
 	}
 
-	public static void combatePokemon(Pokemon pAtacante, Pokemon pDefensor, int oAtacante, int oDefensor,Tipo tabla) {
+	public static void combatePokemon(Pokemon pAtacante, Pokemon pDefensor, int oAtacante, int oDefensor, Tipo tabla) {
 		System.out.println("——————————————————————————————————");
 		if (pAtacante.getPuntosVidaActuales() > 0) {
 			pAtacante.atacar(pDefensor, oAtacante);
