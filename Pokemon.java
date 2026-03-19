@@ -16,7 +16,9 @@ public class Pokemon {
 	protected int puntosVidaMaximo;
 	protected int poderMaximo = 600;
 	protected boolean protegido = false;
-	private String UltAtq = null;
+	protected Tipo.Tipos tipo1;
+	protected Tipo.Tipos tipo2;
+	
 	
 	protected int nivAtF = 0;
 	protected int nivDefF = 0;
@@ -24,12 +26,11 @@ public class Pokemon {
 	protected int nivDefE = 0;
 	protected int nivVel = 0;
 
-	protected Tipo.Tipos tipo1;
-	protected Tipo.Tipos tipo2;
-
+	private String UltAtq = null;
+	private String blanco = "\u001B[0m";
+	
 	// (AtF, DfF, AtF, DfE, V)
 	private int[] caracteristicasBase;
-
 	public List<Ataque> movimientos;
 
 	// Constructores
@@ -231,6 +232,30 @@ public class Pokemon {
 		UltAtq = ultAtq;
 	}
 
+	public Tipo.Tipos getTipo1() {
+		return tipo1;
+	}
+
+	public Tipo.Tipos getTipo2() {
+		return tipo2;
+	}
+
+	public void setTipo1(Tipo.Tipos tipo1) {
+		this.tipo1 = tipo1;
+	}
+
+	public void setTipo2(Tipo.Tipos tipo2) {
+		this.tipo2 = tipo2;
+	}
+	
+	public void setProtegido(boolean protegido) { // Realizado por Adrian para hacer el AtaqueProteccion
+		this.protegido = protegido;
+	}
+	
+	public boolean estaProtegido() { // Realizado por Adrian para hacer el AtaqueProteccion
+		return protegido;
+	}
+	
 	// Métodos
 	public String validarNombre() {
 		if (this.mote != null) {
@@ -262,33 +287,23 @@ public class Pokemon {
 			color = GREEN;
 		}
 
-		if (this.getTipo1() != null && this.getTipo2() != null) {
-			System.out.println("——————————————————————————————————");
-			System.out.println(validarNombre() + " - " + this.getTipo1()+ " "+this.getTipo2());
-			System.out.print(this.puntosVidaActuales + "/" + this.puntosVidaMaximo + " ");
-			System.out.print(" |");
-			for (int i = 0; i < cantidad; i++) {
-				System.out.print(color + "■" + ANSI_RESET);
-			}
-			for (int g = 0; g < 20 - cantidad; g++) {
-				System.out.print("⬚");
-			}
-			System.out.println("|");
-			System.out.println("——————————————————————————————————");
+		System.out.println("——————————————————————————————————————————————————————————————————————————————————————————————————————————————————");
+		if(this.getTipo1() != null && this.getTipo2() != null) {
+			System.out.println(validarNombre() + " - " + Tipo.getColorTipo(this.getTipo1()) + this.getTipo1() + blanco + " " + Tipo.getColorTipo(this.getTipo2()) + this.getTipo2() + blanco);	
 		} else {
-			System.out.println("——————————————————————————————————");
-			System.out.println(validarNombre() + " - " + this.getTipo1());
-			System.out.print(this.puntosVidaActuales + "/" + this.puntosVidaMaximo + " ");
-			System.out.print(" |");
-			for (int i = 0; i < cantidad; i++) {
-				System.out.print(color + "■" + ANSI_RESET);
-			}
-			for (int g = 0; g < 20 - cantidad; g++) {
-				System.out.print("⬚");
-			}
-			System.out.println("|");
-			System.out.println("——————————————————————————————————");
+			System.out.println(validarNombre() + " - " + Tipo.getColorTipo(this.getTipo1()) + this.getTipo1() + blanco);
 		}
+		System.out.print(this.puntosVidaActuales + "/" + this.puntosVidaMaximo + " ");
+		System.out.print(" |");
+		for (int i = 0; i < cantidad; i++) {
+			System.out.print(color + "■" + ANSI_RESET);
+		}
+		for (int g = 0; g < 20 - cantidad; g++) {
+			System.out.print("⬚");
+		}
+		System.out.println("|");
+		System.out.println("——————————————————————————————————————————————————————————————————————————————————————————————————————————————————");
+	
 	}
 
 	// todo esto es lo nuevo de ataques {
@@ -311,8 +326,11 @@ public class Pokemon {
 
 	public void mostrarAtaques() {
 		System.out.println("Lista de movimientos de " + validarNombre());
+		System.out.println("——————————————————————————————————————————————————————————————————————————————————————————————————————————————————");
 		for (int i = 0; i < movimientos.size(); i++) {
-			System.out.println((i + 1) + " : " + this.movimientos.get(i));
+			System.out.println((i+1) + " : "+this.movimientos.get(i) + "   |   " + (i+2) + " : " + this.movimientos.get(i+1));
+			System.out.println("——————————————————————————————————————————————————————————————————————————————————————————————————————————————————");
+			i++;
 		}
 	}
 
@@ -345,29 +363,28 @@ public class Pokemon {
 	}
 	
 	// } No toqueis ningun metodo de estos deberian funcionar sino avisar
-
-	public Tipo.Tipos getTipo1() {
-		return tipo1;
-	}
-
-	public Tipo.Tipos getTipo2() {
-		return tipo2;
-	}
-
-	public void setTipo1(Tipo.Tipos tipo1) {
-		this.tipo1 = tipo1;
-	}
-
-	public void setTipo2(Tipo.Tipos tipo2) {
-		this.tipo2 = tipo2;
-	}
 	
-	public void setProtegido(boolean protegido) { // Realizado por Adrian para hacer el AtaqueProteccion
-		this.protegido = protegido;
-	}
-	
-	public boolean estaProtegido() { // Realizado por Adrian para hacer el AtaqueProteccion
-		return protegido;
+	public void reiniciarPkm() { // hecho por Raul
+			this.puntosVidaActuales = this.puntosVidaMaximo;
+			this.protegido = false;
+			this.UltAtq = null;
+			
+			for (Ataque atq : movimientos) {
+				atq.setPpActual(atq.getPp());
+			}
+			
+			this.ataqueFisico = this.caracteristicasBase[0];
+		    this.defensaFisico = this.caracteristicasBase[1];
+		    this.ataqueEspecial = this.caracteristicasBase[2];
+		    this.defensaEspecial = this.caracteristicasBase[3];
+		    this.velocidad = this.caracteristicasBase[4];
+			
+			this.nivAtF = 0;
+			this.nivDefF = 0;
+			this.nivAtE = 0;
+			this.nivDefE = 0;
+			this.nivVel = 0;
+			
 	}
 
 	public boolean esValidoParaCombate() { // Hecho por Raúl: valida un pokemon antes de un combate

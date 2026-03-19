@@ -24,11 +24,12 @@ public class AtaqueMejora extends AtaqueOfensivos {
 				} else if (this.getCategoria().equalsIgnoreCase("especial")) {
 					danio = calcularDanio(pAtacante.getAtaqueEspecial(), pEnemigo.getDefensaEspecial());
 				}
-				pEnemigo.reducirPuntosDeVida(danio);
 				
 				Tipo tabla = new Tipo();
 				double mult = tabla.getMultiplicadorTotal(this.getTipoAtaque(), pAtacante, pEnemigo.getTipo1(), pEnemigo.getTipo2());
 				danio = (int)(danio * mult);
+				
+				pEnemigo.reducirPuntosDeVida(danio);
 				
 				if (esCritico()) {
 					System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre() + ". Golpe critico!");

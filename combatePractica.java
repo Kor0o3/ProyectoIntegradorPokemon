@@ -11,24 +11,24 @@ public class combatePractica {
 		boolean pokemonDerrotado = false;
 		int masVeloz = 0, opcionP1 = 0, opcionP2 = 0, cont = 1;
 
-		Pokemon pokemon1 = new Pokemon("Pikachu", 45, 40, 20, 100, 10, 120, Tipos.Electrico, null);
+		Pokemon pokemon1 = new Pokemon("Pikachu", 60, 40, 20, 100, 10, 120, Tipos.Electrico, null);
 		pokemon1.agregarAtaque(new AtaqueCategoria("Ataque Rapido", "fisico", 30, 100, 15, true, Tipos.Electrico));
-		pokemon1.agregarAtaque(new AtaqueCategoria("Portazo", "fisico", 80, 75, 20, false, null));
-		pokemon1.agregarAtaque(new AtaqueCategoria("Rayo", "especial", 90, 100, 15, false, null));
-		// pokemon1.agregarAtaque(new AtaqueRetroceso("Placaje electrico", "fisico", 120, 100, 15, false, null));
+		pokemon1.agregarAtaque(new AtaqueCategoria("Rayo", "especial", 90, 100, 15, false, Tipos.Electrico));
+		pokemon1.agregarAtaque(new AtaqueRetrocesoSustancial("Cabezazo", "fisico", 150, 50, 5, false, Tipos.Acero));
 		pokemon1.agregarAtaque(new AtaqueProteccion("Proteccion", "estado", 100, 10, true, Tipos.Hada));
-
-		Pokemon pokemon2 = new Pokemon("Charmander", "Clipper", 50, 45, 20, 30, 25, 120, Tipos.Fuego, Tipos.Volador);
+		// pokemon1.agregarAtaque(new AtaqueRetroceso("Placaje electrico", "fisico", 120, 100, 15, false, Tipos.Electrico));
+		// pokemon1.agregarAtaque(new AtaqueMejora("Puño incremento", "fisico", "AtF", 1, 40, 100, 20, false, Tipos.Acero));
+		// pokemon1.agregarAtaque(new AtaqueRecuperacion("Recuperacion", "estado", 100, 10, false, Tipos.Planta));
+		
+		Pokemon pokemon2 = new Pokemon("Charmander", "Clipper", 45, 45, 20, 30, 25, 120, Tipos.Fuego, Tipos.Volador);
 		pokemon2.agregarAtaque(new AtaqueReduccion("Viento Hielo", "especial", "Vel", 1, pokemon1, 55, 95, 15, false, Tipos.Agua));
-		// pokemon2.agregarAtaque(new AtaqueReduccion("Rencor Reprimido", "especial", "AtF", 1, pokemon1, 75, 100, 5, false));
-		// pokemon2.agregarAtaque(new AtaqueReduccion("Arremetida", "fisico", "DefF", 1, pokemon2, 120, 100, 5, false));
-		// pokemon2.agregarAtaque(new AtaqueMejora("Nitrocarga", "fisico", "Vel", 1, 50, 100, 20, false));
-		// pokemon2.agregarAtaque(new AtaqueMejora("Puño incrimento", "fisico", "AtF", 1, 40, 100, 20, false));
-		pokemon2.agregarAtaque(new AtaqueCategoria("Ascuas", "especial", 40, 951, 25, true, Tipos.Fuego));
-		pokemon2.agregarAtaque(new AtaqueDrenado("Gigadrenado", "fisico", 2, 75, 100, 10, false, null));
-		// pokemon2.agregarAtaque(new AtaqueProteccion("Proteccion", "Estado", 100, 15, true, null));
-		//pokemon2.agregarAtaque(new AtaqueRecuperacion("Recuperacion", "estado", 100, 10, false, Tipos.Planta));
-		pokemon2.agregarAtaque(new AtaqueProteccion("Proteccion", "estado", 100, 10, true, Tipos.Hada));
+		pokemon2.agregarAtaque(new AtaqueCategoria("Ascuas", "especial", 40, 95, 25, true, Tipos.Fuego));
+		pokemon2.agregarAtaque(new AtaqueDrenado("Gigadrenado", "fisico", 2, 75, 100, 10, false, Tipos.Planta));
+		pokemon2.agregarAtaque(new AtaqueRecuperacion("Recuperacion", "estado", 100, 10, false, Tipos.Planta));
+		// pokemon2.agregarAtaque(new AtaqueProteccion("Proteccion", "estado", 100, 10, true, Tipos.Hada));
+		// pokemon2.agregarAtaque(new AtaqueReduccion("Rencor Reprimido", "especial", "AtF", 1, pokemon1, 75, 100, 5, false, Tipos.Dragon));
+		// pokemon2.agregarAtaque(new AtaqueReduccion("Arremetida", "fisico", "DefF", 1, pokemon2, 120, 100, 5, false, Tipos.Tierra));
+		// pokemon2.agregarAtaque(new AtaqueMejora("Nitrocarga", "fisico", "Vel", 1, 50, 100, 20, false, Tipos.Fuego));
 		
 		if (pokemon1.esValidoParaCombate() && pokemon2.esValidoParaCombate()) {
 			mostrarPokemons(pokemon1, pokemon2);
@@ -39,18 +39,16 @@ public class combatePractica {
 					if (!pokemonDerrotado && pokemon1.getPuntosVidaActuales() > 0
 							&& pokemon2.getPuntosVidaActuales() > 0) {
 						System.out.println("Ronda " + cont);
-						System.out.println("——————————————————————————————————");
+						System.out.println("——————————————————————————————————————————————————————————————————————————————————————————————————————————————————");
 						System.out.println("Turno de " + pokemon1.validarNombre());
-						System.out.println("——————————————————————————————————");
 						pokemon1.mostrarAtaques();
 						do {
 							System.out.print("Que ataque hara " + pokemon1.validarNombre() + " : ");
 							opcionP1 = sc.nextInt();
 						} while (opcionP1 < 1 || opcionP1 > 4 || !pokemon1.puedesUsarAtaque(opcionP1));
 
-						System.out.println("——————————————————————————————————");
+						System.out.println("——————————————————————————————————————————————————————————————————————————————————————————————————————————————————");
 						System.out.println("Turno de " + pokemon2.validarNombre());
-						System.out.println("——————————————————————————————————");
 						pokemon2.mostrarAtaques();
 						do {
 							System.out.print("Que ataque hara " + pokemon2.validarNombre() + " : ");
@@ -78,18 +76,16 @@ public class combatePractica {
 							&& pokemon2.getPuntosVidaActuales() > 0) {
 						// Primera parte escoger los movimientos
 						System.out.println("Ronda " + cont);
-						System.out.println("——————————————————————————————————");
+						System.out.println("——————————————————————————————————————————————————————————————————————————————————————————————————————————————————");
 						System.out.println("Turno de " + pokemon2.validarNombre());
-						System.out.println("——————————————————————————————————");
 						pokemon2.mostrarAtaques();
 						do {
 							System.out.print("Que ataque hara " + pokemon2.validarNombre() + " : ");
 							opcionP2 = sc.nextInt();
 						} while (opcionP2 < 1 || opcionP2 > 4 || !pokemon2.puedesUsarAtaque(opcionP2));
 
-						System.out.println("——————————————————————————————————");
+						System.out.println("——————————————————————————————————————————————————————————————————————————————————————————————————————————————————");
 						System.out.println("Turno de " + pokemon1.validarNombre());
-						System.out.println("——————————————————————————————————");
 						pokemon1.mostrarAtaques();
 						do {
 							System.out.print("Que ataque hara " + pokemon1.validarNombre() + " : ");
@@ -117,6 +113,8 @@ public class combatePractica {
 				cont++;
 			} while (!pokemonDerrotado);
 
+			pokemon1.reiniciarPkm();
+			pokemon2.reiniciarPkm();
 			sc.close();
 		}
 	}
@@ -128,7 +126,7 @@ public class combatePractica {
 	}
 
 	public static void combatePokemon(Pokemon pAtacante, Pokemon pDefensor, int oAtacante, int oDefensor, Tipo tabla) {
-		System.out.println("——————————————————————————————————");
+		System.out.println("——————————————————————————————————————————————————————————————————————————————————————————————————————————————————");
 		if (pAtacante.getPuntosVidaActuales() > 0) {
 			pAtacante.atacar(pDefensor, oAtacante);
 		}
@@ -136,6 +134,6 @@ public class combatePractica {
 			pDefensor.atacar(pAtacante, oDefensor);
 		}
 		mostrarPokemons(pAtacante, pDefensor);
-		System.out.println("——————————————————————————————————");
+		System.out.println("——————————————————————————————————————————————————————————————————————————————————————————————————————————————————");
 	}
 }

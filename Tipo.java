@@ -21,6 +21,35 @@ public class Tipo {
 		mapitas();
 	}
 
+	public static String getColorTipo(Tipos tipo) {
+	    if (tipo == null) {
+	    	return "\u001B[0m";
+	    }
+	    
+	    switch (tipo) {
+	        case Fuego:      
+	        	return "\u001B[31m"; // rojo
+	        case Agua:       
+	        	return "\u001B[34m"; // azul
+	        case Planta:
+	        	return "\u001B[32m"; // verde
+	        case Electrico:
+	        	return "\u001B[33m"; // amarillo
+	        case Tierra:
+	        	return "\u001B[33m"; // amarillo oscuro
+	        case Volador:
+	        	return "\u001B[96m"; // cyan
+	        case Acero:
+	        	return "\u001B[90m"; // gris orcuro
+	        case Hada: 
+	        	return "\u001B[38;5;213m"; // rosa
+	        case Dragon:
+	        	return "\u001B[94m"; // azul claro
+	        default:    
+	        	return "\u001B[0m";
+	    }
+	}
+	
 	public void mapitas() {
 		// tipo tal es efectivo contra el tipo tal
 		efectividades.put(Tipos.Fuego, new ArrayList<>());

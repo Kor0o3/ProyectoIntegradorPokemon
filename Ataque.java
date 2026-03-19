@@ -1,8 +1,7 @@
 package ProyectoIntegradorPokemon;
 
 public abstract class Ataque {
-	// Si tocais algo de esta clase comentarlo al igual que con las otras por si
-	// luego falla
+	// Si tocais algo de esta clase comentarlo al igual que con las otras por si luego falla
 	// Atributos
 	protected int potencia;
 	protected int precision;
@@ -11,10 +10,11 @@ public abstract class Ataque {
 	protected String nombre;
 	protected String categoria;
 	protected boolean prioridad;
-	protected static double probCrit = 0.05;
 	protected Tipo.Tipos tipoAtaque;
 	
-	// he añadido el atributo para el tipo del ataque y usarlo en el constructor
+	protected static double probCrit = 0.05;
+	private String blanco = "\u001B[0m";
+	
 	// Constructor
 	public Ataque(String nombre, String categoria, int potencia, int precision, int pp, boolean prioridad,
 			Tipo.Tipos tipoAtaque) {
@@ -112,7 +112,7 @@ public abstract class Ataque {
 	}
 
 	public abstract void utilizar(Pokemon pAtacante, Pokemon pEnemigo);
-
+	
 	@Override
 	public String toString() {
 		String prioridad = null;
@@ -121,8 +121,6 @@ public abstract class Ataque {
 		} else {
 			prioridad = "no";
 		}
-		return getNombre() + " | Categoria: " + getCategoria() + " - Potencia: " + getPotencia() + " - Precision: "
-				+ getPrecision() + " - PP: " + getPpActual() + "/" + getPp() + " - Prioridad: " + prioridad
-				+ " - Tipo: " + getTipoAtaque();
+		return getNombre() + " - Tipo: " + Tipo.getColorTipo(getTipoAtaque())+getTipoAtaque() + blanco + " Prioridad: " + prioridad + " - PP: " + getPpActual() + "/" + getPp();
 	}
 }
