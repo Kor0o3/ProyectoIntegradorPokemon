@@ -94,7 +94,6 @@ public abstract class Ataque {
 		}
 	}
 
-
 	// Metodos
 	public boolean tienePps() {
 		return this.ppActual > 0;

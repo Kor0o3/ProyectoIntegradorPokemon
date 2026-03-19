@@ -12,8 +12,8 @@ public class combatePractica {
 		int masVeloz = 0, opcionP1 = 0, opcionP2 = 0, cont = 1;
 
 		Pokemon pokemon1 = new Pokemon("Pikachu", 60, 40, 20, 100, 10, 120, Tipos.Electrico, null);
-		pokemon1.agregarAtaque(new AtaqueCategoria("Ataque Rapido", "fisico", 30, 100, 15, true, Tipos.Electrico));
-		pokemon1.agregarAtaque(new AtaqueCategoria("Rayo", "especial", 90, 100, 15, false, Tipos.Electrico));
+		pokemon1.agregarAtaque(new AtaqueNormal("Ataque Rapido", "fisico", 30, 100, 15, true, Tipos.Electrico));
+		pokemon1.agregarAtaque(new AtaqueNormal("Rayo", "especial", 90, 100, 15, false, Tipos.Electrico));
 		pokemon1.agregarAtaque(new AtaqueRetrocesoSustancial("Cabezazo", "fisico", 150, 50, 5, false, Tipos.Acero));
 		pokemon1.agregarAtaque(new AtaqueProteccion("Proteccion", "estado", 100, 10, true, Tipos.Hada));
 		// pokemon1.agregarAtaque(new AtaqueRetroceso("Placaje electrico", "fisico", 120, 100, 15, false, Tipos.Electrico));
@@ -22,7 +22,7 @@ public class combatePractica {
 		
 		Pokemon pokemon2 = new Pokemon("Charmander", "Clipper", 45, 45, 20, 30, 25, 120, Tipos.Fuego, Tipos.Volador);
 		pokemon2.agregarAtaque(new AtaqueReduccion("Viento Hielo", "especial", "Vel", 1, pokemon1, 55, 95, 15, false, Tipos.Agua));
-		pokemon2.agregarAtaque(new AtaqueCategoria("Ascuas", "especial", 40, 95, 25, true, Tipos.Fuego));
+		pokemon2.agregarAtaque(new AtaqueNormal("Ascuas", "especial", 40, 95, 25, true, Tipos.Fuego));
 		pokemon2.agregarAtaque(new AtaqueDrenado("Gigadrenado", "fisico", 2, 75, 100, 10, false, Tipos.Planta));
 		pokemon2.agregarAtaque(new AtaqueRecuperacion("Recuperacion", "estado", 100, 10, false, Tipos.Planta));
 		// pokemon2.agregarAtaque(new AtaqueProteccion("Proteccion", "estado", 100, 10, true, Tipos.Hada));

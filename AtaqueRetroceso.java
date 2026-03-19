@@ -1,6 +1,6 @@
 package ProyectoIntegradorPokemon;
 
-public class AtaqueRetroceso extends AtaqueCategoria {
+public class AtaqueRetroceso extends AtaqueOfensivos {
 	public AtaqueRetroceso(String nombre, String categoria, int potencia, int precision, int pp, boolean prioridad,Tipo.Tipos tipoAtaque) { 
 		super(nombre, categoria, potencia, precision, pp, prioridad,tipoAtaque);
 		// TODO Auto-generated constructor stub
