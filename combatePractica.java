@@ -123,7 +123,6 @@ public class combatePractica {
 
 	// Metodos para optimizar un poco el main
 	public static void mostrarPokemons(Pokemon pokemon1, Pokemon pokemon2) {
-		System.out.println(AtaqueProteccion.contador);
 		pokemon1.mostrarEstadoDelPokemon();
 		pokemon2.mostrarEstadoDelPokemon();
 	}

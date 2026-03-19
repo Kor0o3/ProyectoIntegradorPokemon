@@ -14,12 +14,15 @@ public class AtaqueProteccion extends AtaquesEstado {
 			if(tienePps()) {
 				ppActual--;
 				
-				if (contador == 0) { // añadido por raul
-					tempPre = this.precision;
-					setPrecision(tempPre);
+				// Hecho por Raul {
+				if(nombreUltimoAtq != null && !nombreUltimoAtq.equalsIgnoreCase(this.nombre)) {
+					tempPre = precision;
+				} else {
+					nombreUltimoAtq = this.nombre;
 				}
 				
-				if(acierta()) {
+				
+				if(rng < tempPre){
 					System.out.println(pAtacante.validarNombre() + " se esta protegiendo con " + getNombre());
 					pAtacante.setProtegido(true); 
 				} else {
@@ -27,7 +30,7 @@ public class AtaqueProteccion extends AtaquesEstado {
 					pAtacante.setProtegido(false);
 				}
 				
-				tempPre = tempPre/2; // añadido por raul
+				tempPre = tempPre/2; // }añadido por raul
 				contador++;
 			}
 				

@@ -58,6 +58,7 @@ public class AtaqueDrenado extends AtaqueCategoria {
 				else {
 					System.out.println("El ataque es neutro");
 				}
+				nombreUltimoAtq = this.nombre;
 			} else {
 				System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre() + " pero falló...");
 			}

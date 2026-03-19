@@ -52,7 +52,7 @@ public class AtaqueMejora extends AtaqueOfensivos {
 				mejorarCaracteristica(pAtacante);
 
 				System.out.println(pAtacante.validarNombre() + " subió su " + this.caracteristica);
-
+				nombreUltimoAtq = this.nombre;
 			} else {
 				System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre() + " pero falló...");
 			}

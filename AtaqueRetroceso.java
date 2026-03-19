@@ -56,6 +56,7 @@ public class AtaqueRetroceso extends AtaqueCategoria {
 					}
 				
 				pEnemigo.reducirPuntosDeVida(danio);
+				nombreUltimoAtq = this.nombre;
 			} else {
 				System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre() + " pero falló...");
 			}

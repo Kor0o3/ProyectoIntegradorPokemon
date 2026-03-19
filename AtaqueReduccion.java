@@ -52,6 +52,7 @@ public class AtaqueReduccion extends AtaqueOfensivos {
 
 				reducirCaracteristica(this.pAReducir);
 				System.out.println(pAReducir.validarNombre() + " bajó su " + this.caracteristica);
+				nombreUltimoAtq = this.nombre;
 
 			} else {
 				System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre() + " pero falló...");

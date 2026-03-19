@@ -25,6 +25,7 @@ public class AtaqueRecuperacion extends AtaquesEstado {
 			} else {
 				System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre() + " pero falló...");
 			}
+			nombreUltimoAtq = this.nombre;
 		} else {
 			System.out.println(getNombre() + " no tiene PP");
 		}

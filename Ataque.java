@@ -14,7 +14,8 @@ public abstract class Ataque {
 	protected int rng = (int) (Math.random() * 100);
 	protected static double probCrit = 0.05;
 	protected Tipo.Tipos tipoAtaque;
-
+	protected static String nombreUltimoAtq = null;
+	
 	// he añadido el atributo para el tipo del ataque y usarlo en el constructor
 	// Constructor
 	public Ataque(String nombre, String categoria, int potencia, int precision, int pp, boolean prioridad,
