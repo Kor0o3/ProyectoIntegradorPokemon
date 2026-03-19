@@ -1,12 +1,11 @@
 package ProyectoIntegradorPokemon;
 
 public class AtaqueRetroceso extends AtaqueCategoria {
-	
-
 	public AtaqueRetroceso(String nombre, String categoria, int potencia, int precision, int pp, boolean prioridad,Tipo.Tipos tipoAtaque) { 
 		super(nombre, categoria, potencia, precision, pp, prioridad,tipoAtaque);
 		// TODO Auto-generated constructor stub
 	}
+	
 	public void utilizar(Pokemon pAtacante, Pokemon pEnemigo) {
 		int danio = 0;
 		if (tienePps()) {
@@ -42,6 +41,8 @@ public class AtaqueRetroceso extends AtaqueCategoria {
 					System.out.println("El ataque es neutro");
 				}
 				
+				int rng = (int)(Math.random() * 100);
+				
 				if(rng>25) {
 						pAtacante.reducirPuntosDeVida(pAtacante.puntosVidaActuales/2);
 						System.out.println("La salud de "+pAtacante.nombrePokemon+" se ha reducido por su ataque con retroceso!");
@@ -55,8 +56,7 @@ public class AtaqueRetroceso extends AtaqueCategoria {
 						System.out.println("La salud de "+pAtacante.nombrePokemon+" se ha reducido moderadamente por su ataque con retroceso!");
 					}
 				
-				pEnemigo.reducirPuntosDeVida(danio);
-				nombreUltimoAtq = this.nombre;
+				pEnemigo.reducirPuntosDeVida(danio);	
 			} else {
 				System.out.println(pAtacante.validarNombre() + " ha usado " + getNombre() + " pero falló...");
 			}

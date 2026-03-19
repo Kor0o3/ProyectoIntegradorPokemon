@@ -11,10 +11,8 @@ public abstract class Ataque {
 	protected String nombre;
 	protected String categoria;
 	protected boolean prioridad;
-	protected int rng = (int) (Math.random() * 100);
 	protected static double probCrit = 0.05;
 	protected Tipo.Tipos tipoAtaque;
-	protected static String nombreUltimoAtq = null;
 	
 	// he añadido el atributo para el tipo del ataque y usarlo en el constructor
 	// Constructor
@@ -45,7 +43,6 @@ public abstract class Ataque {
 			} else {
 				this.pp = pp;
 			}
-
 			this.prioridad = prioridad;
 			this.nombre = nombre;
 			this.ppActual = pp;
@@ -97,16 +94,19 @@ public abstract class Ataque {
 		}
 	}
 
+
 	// Metodos
 	public boolean tienePps() {
 		return this.ppActual > 0;
 	}
 
 	public boolean acierta() {
+		int rng = (int) (Math.random() * 100);
 		return rng < this.precision;
 	}
 
 	protected boolean esCritico() {
+		int rng = (int) (Math.random() * 100);
 		int porcentajeCritico = (int) (probCrit * 100);
 		return rng < porcentajeCritico;
 	}

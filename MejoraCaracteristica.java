@@ -36,7 +36,6 @@ public class MejoraCaracteristica extends AtaquesEstado{
 		} else {
 			System.out.println(getNombre() + " no tiene PP");
 		}
-		nombreUltimoAtq = this.nombre;
 	}
 	
 	public void mejorarCaracteristica(Pokemon pAtacante) {

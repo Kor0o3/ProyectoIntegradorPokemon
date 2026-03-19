@@ -16,6 +16,7 @@ public class Pokemon {
 	protected int puntosVidaMaximo;
 	protected int poderMaximo = 600;
 	protected boolean protegido = false;
+	private String UltAtq = null;
 	
 	protected int nivAtF = 0;
 	protected int nivDefF = 0;
@@ -222,6 +223,14 @@ public class Pokemon {
 		return caracteristicasBase[i];
 	}
 
+	public String getUltAtq() {
+	    return UltAtq;
+	}
+	
+	public void setUltAtq(String ultAtq) {
+		UltAtq = ultAtq;
+	}
+
 	// Métodos
 	public String validarNombre() {
 		if (this.mote != null) {
@@ -291,10 +300,12 @@ public class Pokemon {
 				System.out.println(this.validarNombre() + " usó " + this.ataqueUsado(opcion) + " pero " + enemigo.validarNombre() + " se protegió!");
 		        prot = true;
 		}
+		
 		enemigo.setProtegido(false);
 		
 		if (!prot){ // añadido por raul	
 			ataque.utilizar(this, enemigo);
+			this.setUltAtq(ataque.getNombre());
 		}
 	}
 
